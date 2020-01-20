@@ -60,6 +60,11 @@ class User
      */
     private $package_cost;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
+     */
+    private $userStat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -169,6 +174,23 @@ class User
     public function setPackageCost(?int $package_cost): self
     {
         $this->package_cost = $package_cost;
+
+        return $this;
+    }
+
+    public function getUserStat(): ?UserStat
+    {
+        return $this->userStat;
+    }
+
+    public function setUserStat(UserStat $userStat): self
+    {
+        $this->userStat = $userStat;
+
+        // set the owning side of the relation if necessary
+        if ($userStat->getUserId() !== $this) {
+            $userStat->setUserId($this);
+        }
 
         return $this;
     }

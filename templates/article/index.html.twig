@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/" >
+            <img src="images/stop.jpg" alt="C'est un logo pour arrêter de fumer lol" class="center-block" style="width: 60px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav mr-auto" style="font-size:20px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/article"> Article <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/utilisateur">Utilisateur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/statistiques">Statistiques</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/motivation">Motivation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/faits">Faits</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+
+                <button type="button" href="/connection" class="btn btn-primary btn-lg"/>
+                    Connection
+                </button>
+                <button type="button" href="/inscription" class="btn btn-primary btn-lg">
+                    Inscription
+                </button>
+    </span>
+        </div>
+    </nav>
+{% endblock %}
