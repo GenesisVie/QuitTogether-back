@@ -14,3 +14,6 @@ framework:
     #fragments: true
     php_errors:
         log: true
+sensio_framework_extra:
+    request: { converters: true }
+    view: { annotations: true }
