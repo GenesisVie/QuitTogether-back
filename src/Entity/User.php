@@ -38,17 +38,17 @@ class User
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $stopped_at;
+    private $stoppedAt;
 
     /**
      * @ORM\Column(type="date")
@@ -58,7 +58,26 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $package_cost;
+    private $packageCost;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function prePersist()
+    {
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
+    public function __construct()
+    {
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
@@ -120,36 +139,36 @@ class User
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     public function getStoppedAt(): ?\DateTimeInterface
     {
-        return $this->stopped_at;
+        return $this->stoppedAt;
     }
 
-    public function setStoppedAt(\DateTimeInterface $stopped_at): self
+    public function setStoppedAt(\DateTimeInterface $stoppedAt): self
     {
-        $this->stopped_at = $stopped_at;
+        $this->stoppedAt = $stoppedAt;
 
         return $this;
     }
@@ -168,12 +187,12 @@ class User
 
     public function getPackageCost(): ?int
     {
-        return $this->package_cost;
+        return $this->packageCost;
     }
 
-    public function setPackageCost(?int $package_cost): self
+    public function setPackageCost(?int $packageCost): self
     {
-        $this->package_cost = $package_cost;
+        $this->packageCost = $packageCost;
 
         return $this;
     }
