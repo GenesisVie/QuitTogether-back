@@ -86,6 +86,16 @@ class User implements UserInterface
         $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
     }
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
+     */
+    private $userStat;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -169,6 +179,7 @@ class User implements UserInterface
 
         return $this;
     }
+
 
     public function getId(): ?int
     {
