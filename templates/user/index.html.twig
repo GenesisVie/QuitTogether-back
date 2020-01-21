@@ -3,18 +3,42 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/" >
+            <img src="images/stop.jpg" alt="C'est un logo pour arrêter de fumer lol" class="center-block" style="width: 60px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
+            <ul class="navbar-nav mr-auto" style="font-size:20px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/article"> Article <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">Utilisateur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/statistiques">Statistiques</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/motivation">Motivation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/faits">Faits</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <button type="button" href="/connection" class="btn btn-primary btn-lg">
+                    Connection
+                </button>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/david/ynov/web-project/QuitTogether-back/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/david/ynov/web-project/QuitTogether-back/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+    </span>
+        </div>
+    </nav>
 {% endblock %}
