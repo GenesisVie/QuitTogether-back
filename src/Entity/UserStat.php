@@ -24,33 +24,33 @@ class UserStat
     /**
      * @ORM\Column(type="float")
      */
-    private $MoneyEconomised;
+    private $moneyEconomised;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $NbCigarettesSaved;
+    private $nbCigarettesSaved;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $Since;
+    private $since;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="userStat", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $UserId;
+    private $userId;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $TimeSaved;
+    private $timeSaved;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $LifetimeSaved;
+    private $lifetimeSaved;
 
 
     public function getId(): ?int
@@ -72,72 +72,72 @@ class UserStat
 
     public function getMoneyEconomised(): ?float
     {
-        return $this->MoneyEconomised;
+        return $this->moneyEconomised;
     }
 
-    public function setMoneyEconomised(float $MoneyEconomised): self
+    public function setMoneyEconomised(float $moneyEconomised): self
     {
-        $this->MoneyEconomised = $MoneyEconomised;
+        $this->moneyEconomised = $moneyEconomised;
 
         return $this;
     }
 
     public function getNbCigarettesSaved(): ?int
     {
-        return $this->NbCigarettesSaved;
+        return $this->nbCigarettesSaved;
     }
 
-    public function setNbCigarettesSaved(int $NbCigarettesSaved): self
+    public function setNbCigarettesSaved(int $nbCigarettesSaved): self
     {
-        $this->NbCigarettesSaved = $NbCigarettesSaved;
+        $this->nbCigarettesSaved = $nbCigarettesSaved;
 
         return $this;
     }
 
     public function getSince(): ?int
     {
-        return $this->Since;
+        return $this->since;
     }
 
-    public function setSince(int $Since): self
+    public function setSince(int $since): self
     {
-        $this->Since = $Since;
+        $this->since = $since;
 
         return $this;
     }
 
     public function getUserId(): ?User
     {
-        return $this->UserId;
+        return $this->userId;
     }
 
-    public function setUserId(User $UserId): self
+    public function setUserId(User $userId): self
     {
-        $this->UserId = $UserId;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getTimeSaved(): ?float
     {
-        return $this->TimeSaved;
+        return $this->timeSaved;
     }
 
-    public function setTimeSaved(float $TimeSaved): self
+    public function setTimeSaved(float $timeSaved): self
     {
-        $this->TimeSaved = $TimeSaved;
+        $this->timeSaved = $timeSaved;
 
         return $this;
     }
 
     public function getLifetimeSaved(): ?int
     {
-        return $this->LifetimeSaved;
+        return $this->lifetimeSaved;
     }
 
-    public function setLifetimeSaved(int $LifetimeSaved): self
+    public function setLifetimeSaved(int $lifetimeSaved): self
     {
-        $this->LifetimeSaved = $LifetimeSaved;
+        $this->lifetimeSaved = $lifetimeSaved;
 
         return $this;
     }

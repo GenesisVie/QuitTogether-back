@@ -12,8 +12,8 @@ class User implements UserInterface
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid")
      */
     private $id;
 
@@ -68,8 +68,7 @@ class User implements UserInterface
     private $packageCost;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
-     * @ORM\Column(nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="userId", cascade={"persist", "remove"})
      */
     private $userStat;
 
@@ -93,7 +92,7 @@ class User implements UserInterface
     }
 
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
