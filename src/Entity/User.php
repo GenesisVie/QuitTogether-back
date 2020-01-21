@@ -68,6 +68,12 @@ class User implements UserInterface
     private $packageCost;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
+     * @ORM\Column(nullable=true)
+     */
+    private $userStat;
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -86,10 +92,6 @@ class User implements UserInterface
         $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
     }
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="UserId", cascade={"persist", "remove"})
-     */
-    private $userStat;
 
     public function getId(): ?int
     {
@@ -181,10 +183,6 @@ class User implements UserInterface
     }
 
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getEmail(): ?string
     {
