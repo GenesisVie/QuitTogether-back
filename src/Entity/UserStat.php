@@ -29,7 +29,7 @@ class UserStat
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbCigarettesSaved;
+    private $cigarettesSaved;
 
     /**
      * @ORM\Column(type="integer")
@@ -82,14 +82,14 @@ class UserStat
         return $this;
     }
 
-    public function getNbCigarettesSaved(): ?int
+    public function getCigarettesSaved(): ?int
     {
-        return $this->nbCigarettesSaved;
+        return $this->cigarettesSaved;
     }
 
-    public function setNbCigarettesSaved(int $nbCigarettesSaved): self
+    public function setCigarettesSaved(int $cigarettesSaved): self
     {
-        $this->nbCigarettesSaved = $nbCigarettesSaved;
+        $this->cigarettesSaved = $cigarettesSaved;
 
         return $this;
     }

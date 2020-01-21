@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -73,6 +75,26 @@ class User implements UserInterface
     private $userStat;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
+     */
+    private $cigarettes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AchievementUser", mappedBy="user")
+     */
+    private $achievementUsers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="user")
+     */
+    private $notes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="friend")
+     */
+    private $friends;
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -89,6 +111,10 @@ class User implements UserInterface
         $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
         $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
         $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->cigarettes = new ArrayCollection();
+        $this->achievementUsers = new ArrayCollection();
+        $this->notes = new ArrayCollection();
+        $this->friends = new ArrayCollection();
     }
 
 
@@ -254,5 +280,129 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Cigarette[]
+     */
+    public function getCigarettes(): Collection
+    {
+        return $this->cigarettes;
+    }
+
+    public function addCigarette(Cigarette $cigarette): self
+    {
+        if (!$this->cigarettes->contains($cigarette)) {
+            $this->cigarettes[] = $cigarette;
+            $cigarette->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCigarette(Cigarette $cigarette): self
+    {
+        if ($this->cigarettes->contains($cigarette)) {
+            $this->cigarettes->removeElement($cigarette);
+            // set the owning side to null (unless already changed)
+            if ($cigarette->getUser() === $this) {
+                $cigarette->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AchievementUser[]
+     */
+    public function getAchievementUsers(): Collection
+    {
+        return $this->achievementUsers;
+    }
+
+    public function addAchievementUser(AchievementUser $achievementUser): self
+    {
+        if (!$this->achievementUsers->contains($achievementUser)) {
+            $this->achievementUsers[] = $achievementUser;
+            $achievementUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAchievementUser(AchievementUser $achievementUser): self
+    {
+        if ($this->achievementUsers->contains($achievementUser)) {
+            $this->achievementUsers->removeElement($achievementUser);
+            // set the owning side to null (unless already changed)
+            if ($achievementUser->getUser() === $this) {
+                $achievementUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            // set the owning side to null (unless already changed)
+            if ($note->getUser() === $this) {
+                $note->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Friend[]
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    public function addFriend(Friend $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends[] = $friend;
+            $friend->setFriend($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(Friend $friend): self
+    {
+        if ($this->friends->contains($friend)) {
+            $this->friends->removeElement($friend);
+            // set the owning side to null (unless already changed)
+            if ($friend->getFriend() === $this) {
+                $friend->setFriend(null);
+            }
+        }
+
+        return $this;
     }
 }
