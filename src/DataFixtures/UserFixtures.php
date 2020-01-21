@@ -17,9 +17,8 @@ class UserFixtures extends Fixture
      }
     public function load(ObjectManager $manager)
     {
-         $user = new User();
-
         for ($i = 0; $i < 10; $i++) {
+            $user = new User();
             $user->setFirstname('Skrrr-' . $i);
             $user->setLastname('Baang-' . $i);
             $user->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
@@ -33,6 +32,7 @@ class UserFixtures extends Fixture
             $user->setRoles(['ROLE_ADMIN']);
             $manager->persist($user);
         }
+
         $manager->flush();
     }
 }
