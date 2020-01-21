@@ -15,6 +15,7 @@
 /phpunit.xml
 /.idea/*
 .idea/*
+.env
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
