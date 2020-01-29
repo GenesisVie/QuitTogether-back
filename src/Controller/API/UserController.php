@@ -21,6 +21,7 @@ class UserController extends AbstractFOSRestController
     /**
      * List all Users
      * @Rest\Get("/all")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function getAllUser()
     {
@@ -71,8 +72,8 @@ class UserController extends AbstractFOSRestController
      */
     public function postUser(Request $request, UserPasswordEncoderInterface $userPasswordEncoder)
     {
-        $user = new user();
-        $form = $this->createform(usertype::class, $user);
+        $user = new User();
+        $form = $this->createform(UserType::class, $user);
         $data = json_decode($request->getcontent(), true);
         $form->submit($data);
         if ($form->issubmitted() && $form->isvalid()) {

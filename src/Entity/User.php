@@ -70,11 +70,6 @@ class User implements UserInterface
     private $packageCost;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="userId", cascade={"persist", "remove"})
-     */
-    private $userStat;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
      */
     private $cigarettes;
@@ -93,6 +88,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="friend")
      */
     private $friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
+     */
+    private $userStats;
 
     /**
      * @ORM\PrePersist()
@@ -115,6 +115,7 @@ class User implements UserInterface
         $this->achievementUsers = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->friends = new ArrayCollection();
+        $this->userStats = new ArrayCollection();
     }
 
 
@@ -400,6 +401,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($friend->getFriend() === $this) {
                 $friend->setFriend(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserStat[]
+     */
+    public function getUserStats(): Collection
+    {
+        return $this->userStats;
+    }
+
+    public function addUserStat(UserStat $userStat): self
+    {
+        if (!$this->userStats->contains($userStat)) {
+            $this->userStats[] = $userStat;
+            $userStat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserStat(UserStat $userStat): self
+    {
+        if ($this->userStats->contains($userStat)) {
+            $this->userStats->removeElement($userStat);
+            // set the owning side to null (unless already changed)
+            if ($userStat->getUser() === $this) {
+                $userStat->setUser(null);
             }
         }
 
