@@ -31,10 +31,6 @@ class Statistic
      */
     private $since;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $timeSaved;
 
     /**
      * @ORM\Column(type="integer")
@@ -47,7 +43,7 @@ class Statistic
     private $level;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\UserStat", inversedBy="statistics")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserStat", inversedBy="statistics", cascade={"persist"})
      */
     private $UserStat;
 
@@ -88,18 +84,6 @@ class Statistic
     public function setSince(int $since): self
     {
         $this->since = $since;
-
-        return $this;
-    }
-
-    public function getTimeSaved(): ?float
-    {
-        return $this->timeSaved;
-    }
-
-    public function setTimeSaved(float $timeSaved): self
-    {
-        $this->timeSaved = $timeSaved;
 
         return $this;
     }

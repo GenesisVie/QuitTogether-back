@@ -11,6 +11,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * UserController
@@ -35,8 +38,18 @@ class UserController extends AbstractFOSRestController
      */
     public function getMyDetails()
     {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+        /** @var User $user */
         $user = $this->getUser();
-        return $this->json($user);
+        $jsonObject = $serializer->serialize($user, 'json', [
+            'circular_reference_handler' => function($object) {
+                return $object;
+            }
+        ]);
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
     /**

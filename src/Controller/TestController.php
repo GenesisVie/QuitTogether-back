@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FaitsController extends AbstractController
+
+class TestController extends AbstractController
 {
     /**
-     * @Route("/faits", name="faits")
+
+     * @Route("/test", name="test")
      */
     public function index()
     {
-        return $this->render('faits/index.html.twig', [
-            'controller_name' => 'FaitsController',
-        ]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([]);
+//        dump()
     }
 }

@@ -2,13 +2,17 @@
 
 namespace App\Controller\API;
 
+use App\Entity\Statistic;
 use App\Entity\User;
 use App\Entity\UserStat;
-use App\Form\UserStatType;
+use App\Form\StatisticType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * UserController
@@ -22,12 +26,22 @@ class UserStatController extends AbstractFOSRestController
      */
     public function getMyDetails()
     {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+        /** @var User $user */
         $user = $this->getUser();
-        return $this->json($user);
+        $jsonObject = $serializer->serialize($user->getUserStats()->getValues(), 'json', [
+           'circular_reference_handler' => function($object) {
+            return $object;
+           }
+        ]);
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
     /**
-     * @Rest\Post("/new-stat")
+     * @Rest\Post("/new-stat-user")
      * @param Request $request
      * @return Response
      */
@@ -35,16 +49,19 @@ class UserStatController extends AbstractFOSRestController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $userStat = new UserStat();
-        $form = $this->createForm(UserStatType::class, $userStat);
+        $statistic = new Statistic();
+        $form = $this->createForm(StatisticType::class, $statistic);
         $data = json_decode($request->getcontent(), true);
         $form->submit($data);
         if ($form->issubmitted() && $form->isvalid() && $user !== null) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($userStat);
-            $user->addUserStat($userStat);
+            $em->persist($statistic);
+            $userStat = new UserStat();
+            $userStat->setUser($user);
+            $userStat->addStatistic($statistic);
             $em->persist($user);
             $em->flush();
+
             return $this->handleview($this->view(['status' => 'stat created'], response::HTTP_ACCEPTED));
         }
         return $this->handleview($this->view($form->geterrors()));

@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\UserStat;
+use App\Entity\Statistic;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserStatType extends AbstractType
+class StatisticType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -16,15 +16,15 @@ class UserStatType extends AbstractType
             ->add('moneyEconomised')
             ->add('cigarettesSaved')
             ->add('since')
-            ->add('timeSaved')
             ->add('lifetimeSaved')
+            ->add('level')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => UserStat::class,
+            'data_class' => Statistic::class,
             'csrf_protection' => false,
             'allow_extra_fields' => true
         ]);
