@@ -7,5 +7,5 @@ index:
     controller: App\Controller\DefaultController::index
 
 article:
-  path: /article
+  path: /blog
   controller: App\Controller\ArticleController::index

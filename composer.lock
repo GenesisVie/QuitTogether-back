@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "20889a83d770b06ed39a41d9d50b94cb",
+    "content-hash": "5764716be56895fa71e512bf6b862d7b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2527,6 +2527,157 @@
             "time": "2020-01-07T22:58:31+00:00"
         },
         {
+            "name": "lcobucci/jwt",
+            "version": "3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lcobucci/jwt.git",
+                "reference": "a11ec5f4b4d75d1fcd04e133dede4c317aac9e18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/a11ec5f4b4d75d1fcd04e133dede4c317aac9e18",
+                "reference": "a11ec5f4b4d75d1fcd04e133dede4c317aac9e18",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "~1.5",
+                "phpmd/phpmd": "~2.2",
+                "phpunit/php-invoker": "~1.1",
+                "phpunit/phpunit": "^5.7 || ^7.3",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Otávio Cobucci Oblonczyk",
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
+            "keywords": [
+                "JWS",
+                "jwt"
+            ],
+            "time": "2019-05-24T18:30:49+00:00"
+        },
+        {
+            "name": "lexik/jwt-authentication-bundle",
+            "version": "v2.6.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lexik/LexikJWTAuthenticationBundle.git",
+                "reference": "448551fc08c6cff37aad9d8f27f6b9615cd28966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/448551fc08c6cff37aad9d8f27f6b9615cd28966",
+                "reference": "448551fc08c6cff37aad9d8f27f6b9615cd28966",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "lcobucci/jwt": "^3.2",
+                "namshi/jose": "^7.2",
+                "php": "^5.5|^7.0",
+                "symfony/framework-bundle": "^3.4|^4.0|^5.0",
+                "symfony/security-bundle": "^3.4|^4.0|^5.0"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "^3.4|^4.0|^5.0",
+                "symfony/console": "^3.4|^4.0|^5.0",
+                "symfony/dom-crawler": "^3.4|^4.0|^5.0",
+                "symfony/phpunit-bridge": "^3.4|^4.0|^5.0",
+                "symfony/var-dumper": "^3.4|^4.0|^5.0",
+                "symfony/yaml": "^3.4|^4.0|^5.0"
+            },
+            "suggest": {
+                "gesdinet/jwt-refresh-token-bundle": "Implements a refresh token system over Json Web Tokens in Symfony",
+                "spomky-labs/lexik-jose-bridge": "Provides a JWT Token encoder with encryption support"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lexik\\Bundle\\JWTAuthenticationBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Barthe",
+                    "email": "j.barthe@lexik.fr",
+                    "homepage": "https://github.com/jeremyb"
+                },
+                {
+                    "name": "Nicolas Cabot",
+                    "email": "n.cabot@lexik.fr",
+                    "homepage": "https://github.com/slashfan"
+                },
+                {
+                    "name": "Cedric Girard",
+                    "email": "c.girard@lexik.fr",
+                    "homepage": "https://github.com/cedric-g"
+                },
+                {
+                    "name": "Dev Lexik",
+                    "email": "dev@lexik.fr",
+                    "homepage": "https://github.com/lexik"
+                },
+                {
+                    "name": "Robin Chalas",
+                    "email": "robin.chalas@gmail.com",
+                    "homepage": "https://github.com/chalasr"
+                },
+                {
+                    "name": "Lexik Community",
+                    "homepage": "https://github.com/lexik/LexikJWTAuthenticationBundle/graphs/contributors"
+                }
+            ],
+            "description": "This bundle provides JWT authentication for your Symfony REST API",
+            "homepage": "https://github.com/lexik/LexikJWTAuthenticationBundle",
+            "keywords": [
+                "Authentication",
+                "JWS",
+                "api",
+                "bundle",
+                "jwt",
+                "rest",
+                "symfony"
+            ],
+            "time": "2019-11-22T14:22:26+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.25.3",
             "source": {
@@ -2603,6 +2754,69 @@
                 "psr-3"
             ],
             "time": "2019-12-20T14:15:16+00:00"
+        },
+        {
+            "name": "namshi/jose",
+            "version": "7.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/namshi/jose.git",
+                "reference": "89a24d7eb3040e285dd5925fcad992378b82bcff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/namshi/jose/zipball/89a24d7eb3040e285dd5925fcad992378b82bcff",
+                "reference": "89a24d7eb3040e285dd5925fcad992378b82bcff",
+                "shasum": ""
+            },
+            "require": {
+                "ext-date": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-pcre": "*",
+                "ext-spl": "*",
+                "php": ">=5.5",
+                "symfony/polyfill-php56": "^1.0"
+            },
+            "require-dev": {
+                "phpseclib/phpseclib": "^2.0",
+                "phpunit/phpunit": "^4.5|^5.0",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "suggest": {
+                "ext-openssl": "Allows to use OpenSSL as crypto engine.",
+                "phpseclib/phpseclib": "Allows to use Phpseclib as crypto engine, use version ^2.0."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Namshi\\JOSE\\": "src/Namshi/JOSE/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alessandro Nadalin",
+                    "email": "alessandro.nadalin@gmail.com"
+                },
+                {
+                    "name": "Alessandro Cinelli (cirpo)",
+                    "email": "alessandro.cinelli@gmail.com"
+                }
+            ],
+            "description": "JSON Object Signing and Encryption library for PHP.",
+            "keywords": [
+                "JSON Web Signature",
+                "JSON Web Token",
+                "JWS",
+                "json",
+                "jwt",
+                "token"
+            ],
+            "time": "2016-12-05T07:27:31+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -3346,16 +3560,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "6911d432edd5b50822986604fd5a5be3af856d30"
+                "reference": "4d3979f54472637169080f802dc82197e21fdcce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/6911d432edd5b50822986604fd5a5be3af856d30",
-                "reference": "6911d432edd5b50822986604fd5a5be3af856d30",
+                "url": "https://api.github.com/repos/symfony/config/zipball/4d3979f54472637169080f802dc82197e21fdcce",
+                "reference": "4d3979f54472637169080f802dc82197e21fdcce",
                 "shasum": ""
             },
             "require": {
@@ -3406,7 +3620,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-18T12:00:29+00:00"
+            "time": "2020-01-04T13:00:46+00:00"
         },
         {
             "name": "symfony/console",
@@ -3486,16 +3700,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "5c4c1db977dc70bb3250e1308d3e8c6341aa38f5"
+                "reference": "89c3fd5c299b940333bc6fe9f1b8db1b0912c759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/5c4c1db977dc70bb3250e1308d3e8c6341aa38f5",
-                "reference": "5c4c1db977dc70bb3250e1308d3e8c6341aa38f5",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/89c3fd5c299b940333bc6fe9f1b8db1b0912c759",
+                "reference": "89c3fd5c299b940333bc6fe9f1b8db1b0912c759",
                 "shasum": ""
             },
             "require": {
@@ -3538,20 +3752,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-16T14:46:54+00:00"
+            "time": "2020-01-08T17:29:02+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "79b0358207a3571cc3af02a57d0321927921f539"
+                "reference": "6faf589e1f6af78692aed3ab6b3c336c58d5d83c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/79b0358207a3571cc3af02a57d0321927921f539",
-                "reference": "79b0358207a3571cc3af02a57d0321927921f539",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/6faf589e1f6af78692aed3ab6b3c336c58d5d83c",
+                "reference": "6faf589e1f6af78692aed3ab6b3c336c58d5d83c",
                 "shasum": ""
             },
             "require": {
@@ -3611,7 +3825,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-19T16:00:02+00:00"
+            "time": "2020-01-21T07:39:36+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
@@ -3766,16 +3980,16 @@
         },
         {
             "name": "symfony/error-handler",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
-                "reference": "6d7d7712a6ff5215ec26215672293b154f1db8c1"
+                "reference": "a59789092e40ad08465dc2cdc55651be503d0d5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/error-handler/zipball/6d7d7712a6ff5215ec26215672293b154f1db8c1",
-                "reference": "6d7d7712a6ff5215ec26215672293b154f1db8c1",
+                "url": "https://api.github.com/repos/symfony/error-handler/zipball/a59789092e40ad08465dc2cdc55651be503d0d5a",
+                "reference": "a59789092e40ad08465dc2cdc55651be503d0d5a",
                 "shasum": ""
             },
             "require": {
@@ -3818,20 +4032,20 @@
             ],
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-16T14:46:54+00:00"
+            "time": "2020-01-08T17:29:02+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "b3c3068a72623287550fe20b84a2b01dcba2686f"
+                "reference": "9e3de195e5bc301704dd6915df55892f6dfc208b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b3c3068a72623287550fe20b84a2b01dcba2686f",
-                "reference": "b3c3068a72623287550fe20b84a2b01dcba2686f",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9e3de195e5bc301704dd6915df55892f6dfc208b",
+                "reference": "9e3de195e5bc301704dd6915df55892f6dfc208b",
                 "shasum": ""
             },
             "require": {
@@ -3888,7 +4102,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-28T13:33:56+00:00"
+            "time": "2020-01-10T21:54:01+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -4001,16 +4215,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "40c2606131d56eff6f193b6e2ceb92414653b591"
+                "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/40c2606131d56eff6f193b6e2ceb92414653b591",
-                "reference": "40c2606131d56eff6f193b6e2ceb92414653b591",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/266c9540b475f26122b61ef8b23dd9198f5d1cfd",
+                "reference": "266c9540b475f26122b61ef8b23dd9198f5d1cfd",
                 "shasum": ""
             },
             "require": {
@@ -4047,7 +4261,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-26T23:16:41+00:00"
+            "time": "2020-01-21T08:20:44+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4489,16 +4703,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "fcae1cff5b57b2a9c3aabefeb1527678705ddb62"
+                "reference": "c33998709f3fe9b8e27e0277535b07fbf6fde37a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/fcae1cff5b57b2a9c3aabefeb1527678705ddb62",
-                "reference": "fcae1cff5b57b2a9c3aabefeb1527678705ddb62",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/c33998709f3fe9b8e27e0277535b07fbf6fde37a",
+                "reference": "c33998709f3fe9b8e27e0277535b07fbf6fde37a",
                 "shasum": ""
             },
             "require": {
@@ -4540,20 +4754,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-19T15:57:49+00:00"
+            "time": "2020-01-04T13:00:46+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "fe310d2e95cd4c356836c8ecb0895a46d97fede2"
+                "reference": "16f2aa3c54b08483fba5375938f60b1ff83b6bd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/fe310d2e95cd4c356836c8ecb0895a46d97fede2",
-                "reference": "fe310d2e95cd4c356836c8ecb0895a46d97fede2",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/16f2aa3c54b08483fba5375938f60b1ff83b6bd2",
+                "reference": "16f2aa3c54b08483fba5375938f60b1ff83b6bd2",
                 "shasum": ""
             },
             "require": {
@@ -4630,7 +4844,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-19T16:23:40+00:00"
+            "time": "2020-01-21T13:23:17+00:00"
         },
         {
             "name": "symfony/inflector",
@@ -4835,16 +5049,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "010cc488e56cafe5f7494dea70aea93100c234df"
+                "reference": "225034620ecd4b34fd826e9983d85e2b7a359094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/010cc488e56cafe5f7494dea70aea93100c234df",
-                "reference": "010cc488e56cafe5f7494dea70aea93100c234df",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/225034620ecd4b34fd826e9983d85e2b7a359094",
+                "reference": "225034620ecd4b34fd826e9983d85e2b7a359094",
                 "shasum": ""
             },
             "require": {
@@ -4893,7 +5107,7 @@
                 "mime",
                 "mime-type"
             ],
-            "time": "2019-11-30T08:27:26+00:00"
+            "time": "2020-01-04T13:00:46+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
@@ -6710,16 +6924,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "be330f919bdb395d1e0c3f2bfb8948512d6bdd99"
+                "reference": "7cfa470bc3b1887a7b2a47c0a702a84ad614fa92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/be330f919bdb395d1e0c3f2bfb8948512d6bdd99",
-                "reference": "be330f919bdb395d1e0c3f2bfb8948512d6bdd99",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/7cfa470bc3b1887a7b2a47c0a702a84ad614fa92",
+                "reference": "7cfa470bc3b1887a7b2a47c0a702a84ad614fa92",
                 "shasum": ""
             },
             "require": {
@@ -6782,7 +6996,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-12-18T13:41:29+00:00"
+            "time": "2020-01-04T13:00:46+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -8047,16 +8261,16 @@
         },
         {
             "name": "symfony/web-server-bundle",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-server-bundle.git",
-                "reference": "301dad4563b21a791a796da9a736408215b9e9fc"
+                "reference": "92a37564d8577f01a21e7a77dab2f4fcad32f4ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/301dad4563b21a791a796da9a736408215b9e9fc",
-                "reference": "301dad4563b21a791a796da9a736408215b9e9fc",
+                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/92a37564d8577f01a21e7a77dab2f4fcad32f4ba",
+                "reference": "92a37564d8577f01a21e7a77dab2f4fcad32f4ba",
                 "shasum": ""
             },
             "require": {
@@ -8102,7 +8316,7 @@
             ],
             "description": "Symfony WebServerBundle",
             "homepage": "https://symfony.com",
-            "time": "2019-11-26T23:16:41+00:00"
+            "time": "2020-01-04T13:00:46+00:00"
         }
     ],
     "aliases": [],
