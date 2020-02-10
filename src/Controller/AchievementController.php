@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AchievementController extends AbstractController
 {
     /**
-     * @Route("/achievement", name="achievement")
+     * @Route("/admin/achievement", name="achievement")
      */
     public function index()
     {
