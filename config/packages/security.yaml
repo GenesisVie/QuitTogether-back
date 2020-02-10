@@ -2,10 +2,7 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -50,19 +47,3 @@ security:
         - { path: ^/admin$, role: ROLE_ADMIN }
         - { path: ^/admin/, role: ROLE_ADMIN }
         #        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-
-#fos_rest:
-#    routing_loader:
-#        default_format: json
-#        include_format: false
-#    body_listener: true
-#    format_listener:
-#        rules:
-#            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
-#    param_fetcher_listener: true
-#    access_denied_listener:
-#        json: true
-#    view:
-#        view_response_listener: 'force'
-#        formats:
-#            json: true
