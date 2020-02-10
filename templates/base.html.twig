@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
@@ -9,7 +9,9 @@
     {% endblock %}
 </head>
 <body>
-{{ include('default/navbar.html.twig') }}
+{% if is_granted('ROLE_ADMIN') %}
+    {{ include('default/navbar.html.twig') }}
+{% endif %}
 {% block body %}
 {% endblock %}
 {% block javascripts %}
@@ -19,5 +21,5 @@
     <script src="{{ asset('/js/main.js') }}"></script>
 {% endblock %}
 </body>
-
+</html>
 
