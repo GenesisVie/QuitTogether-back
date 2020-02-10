@@ -5,6 +5,7 @@ namespace App\Controller\API;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
 use App\Form\UserType;
+use Doctrine\Persistence\ObjectManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -30,6 +31,28 @@ class UserController extends AbstractFOSRestController
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
         return $this->json($users);
+    }
+
+    /**
+     * List all Users
+     * @Rest\Get("/id/{id}")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function getUserById($id)
+    {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $id]);
+        dump($user->getFriends()->getValues());
+        die;
+        $jsonObject = $serializer->serialize($user, 'json', [
+            'circular_reference_handler' => function($object) {
+                return $object;
+            }
+        ]);
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
     /**
