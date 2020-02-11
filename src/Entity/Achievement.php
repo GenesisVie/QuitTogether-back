@@ -38,6 +38,16 @@ class Achievement
      */
     private $achievementUsers;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $level;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $unsmokedCigarette;
+
     public function __construct()
     {
         $this->achievementUsers = new ArrayCollection();
@@ -111,6 +121,30 @@ class Achievement
                 $achievementUser->setAchievement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(int $level): self
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    public function getUnsmokedCigarette(): ?int
+    {
+        return $this->unsmokedCigarette;
+    }
+
+    public function setUnsmokedCigarette(int $unsmokedCigarette): self
+    {
+        $this->unsmokedCigarette = $unsmokedCigarette;
 
         return $this;
     }
