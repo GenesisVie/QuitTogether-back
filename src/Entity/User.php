@@ -123,6 +123,10 @@ class User implements UserInterface
         $this->userStats = new ArrayCollection();
     }
 
+    public function getFullName(): ?string
+    {
+        return  $this->getFirstname() . ' ' . $this->getLastname();
+    }
 
     public function getId(): ?string
     {

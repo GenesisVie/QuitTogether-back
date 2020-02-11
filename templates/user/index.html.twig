@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Utilisateur{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -12,51 +12,35 @@
 
             </div>
         </div>
-
-
-
-
-
         <table class="table table-bordered">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Status</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Role</th>
                 <th>Date de création</th>
                 <th width="280px">Action</th>
-
             </tr>
-            {% for i in 1..5 %}
+            {% for user in users %}
                 <tr>
-
-                    <td>fdsfsd</td>
-                    <td>sfddsf</td>
-                    <td>fsddsf</td>
-                    <td>fsddsf</td>
-
-
-
-
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email}}</td>
+                    <td>{{ user.fullName}}</td>
+                    <td>{{ user.roles.1}}</td>
+                    <td>{{ user.createdAt |date('d-m-Y') }}</td>
                     <td>
-
                         <form action="" method="POST">
-
-                            <a href="/admin" class="fa fa-search btn btn-primary mr-5 ml-4"></a>
-
-                            <a href="/admin" class="fa fa-edit btn btn-secondary mr-5"></a>
-
-                            <a href="/admin" class="fa fa-trash btn btn-danger"></a>
+                            <a href="{{ path('admin') }}" class="fa fa-search btn btn-primary mr-5 ml-4"></a>
+                            <a href="{{ path('admin') }}" class="fa fa-edit btn btn-secondary mr-5"></a>
+                            <a href="{{ path('admin') }}" class="fa fa-trash btn btn-danger"></a>
                         </form>
-
                     </td>
-
                 </tr>
             {% endfor %}
         </table>
         <div class="pull-right">
-            <a class="btn btn-success"> Créer nouveau</a>
+            <a class="btn btn-success"> Créer une nouvelle utilisateur</a>
         </div>
-
     </div>
 
 {% endblock %}
