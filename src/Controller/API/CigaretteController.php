@@ -2,10 +2,10 @@
 
 namespace App\Controller\API;
 
-use App\Entity\Statistic;
+use App\Entity\Blog;
+use App\Entity\Cigarette;
 use App\Entity\User;
-use App\Entity\UserStat;
-use App\Form\StatisticType;
+use App\Form\CigaretteType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,51 +16,50 @@ use Symfony\Component\Serializer\Serializer;
 
 /**
  * UserController
- * @Rest\Route("/api/user-stat", name="api_")
+ * @Rest\Route("/api/cigarette", name="api_")
  */
-class UserStatController extends AbstractFOSRestController
+class CigaretteController extends AbstractFOSRestController
 {
-/**
-     * List all Users
-     * @Rest\Get("/me")
+    /**
+     * List all of my cigarettes
+     * @Rest\Get("/me/all")
      */
-    public function getMyDetails()
+    public function getAllMyCigarettes()
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
-
         /** @var User $user */
         $user = $this->getUser();
-        $jsonObject = $serializer->serialize($user->getUserStats()->getValues(), 'json', [
-           'circular_reference_handler' => function($object) {
-            return $object;
-           }
+        $cigarettes = $this->getDoctrine()->getRepository(Cigarette::class)->findBy(['user' => $user]);
+        $jsonObject = $serializer->serialize($cigarettes, 'json', [
+            'circular_reference_handler' => function($object) {
+                return $object;
+            }
         ]);
         return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
     /**
-     * @Rest\Post("/new-stat-user")
+     * Post my cigarette
+     * @Rest\Post("/me/new")
      * @param Request $request
      * @return Response
      */
-    public function newStat(Request $request)
+    public function postMyCigarette(Request $request)
     {
-        /** @var User $user */
-        $user = $this->getUser();
-        $userStat = new UserStat();
-        $form = $this->createForm(StatisticType::class, $userStat);
+        $cigarette = new Cigarette();
+        $form = $this->createform(CigaretteType::class, $cigarette);
         $data = json_decode($request->getcontent(), true);
         $form->submit($data);
-        if ($form->issubmitted() && $form->isvalid() && $user !== null) {
+        if ($form->issubmitted() && $form->isvalid()) {
             $em = $this->getDoctrine()->getManager();
-            $userStat->setUser($user);
-            $em->persist($user);
-            $em->persist($userStat);
+            /** @var User $user */
+            $user = $this->getUser();
+            $cigarette->setUser($user);
+            $em->persist($cigarette);
             $em->flush();
-
-            return $this->handleview($this->view(['status' => 'stat created'], response::HTTP_ACCEPTED));
+            return $this->handleview($this->view(['status' => 'cigarette created and linked'], response::HTTP_CREATED));
         }
         return $this->handleview($this->view($form->geterrors()));
     }

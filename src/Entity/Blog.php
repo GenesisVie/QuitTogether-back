@@ -36,6 +36,20 @@ class Blog
      */
     private $image;
 
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
+    public function __construct()
+    {
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
     public function getId(): ?int
     {
         return $this->id;

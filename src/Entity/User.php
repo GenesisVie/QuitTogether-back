@@ -95,6 +95,11 @@ class User implements UserInterface
     private $userStats;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $statistic;
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -433,6 +438,24 @@ class User implements UserInterface
             if ($userStat->getUser() === $this) {
                 $userStat->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getStatistic(): ?UserStat
+    {
+        return $this->statistic;
+    }
+
+    public function setStatistic(?UserStat $statistic): self
+    {
+        $this->statistic = $statistic;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $statistic ? null : $this;
+        if ($statistic->getUser() !== $newUser) {
+            $statistic->setUser($newUser);
         }
 
         return $this;
