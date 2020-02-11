@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h1>Modifier les </h1>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Date de création</th>
+        <th width="280px">Action</th>
+
+    </tr>
+    {% for i in 1..5 %}
+    <tr>
+
+    <td>fdsfsd</td>
+    <td>sfddsf</td>
+        <td>fsddsf</td>
+    <td>fsddsf</td>
+
+
+
+
+        <td>
+
+            <form action="" method="POST">
+
+                <a href="/admin" class="fa fa-search btn btn-primary mr-5 ml-4"></a>
+
+                <a href="/admin" class="fa fa-edit btn btn-secondary mr-5"></a>
+
+                <a href="/admin" class="fa fa-trash btn btn-danger"></a>
+            </form>
+
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+    <div class="pull-right">
+        <a class="btn btn-success"> Créer nouveau</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

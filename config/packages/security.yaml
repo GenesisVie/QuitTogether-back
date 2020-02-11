@@ -2,10 +2,7 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -35,10 +32,7 @@ security:
                     - App\Security\LoginAuthenticator
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
-                # where to redirect after logout
-                # target: app_any_route
+                target: /login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -50,21 +44,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-
-#fos_rest:
-#    routing_loader:
-#        default_format: json
-#        include_format: false
-#    body_listener: true
-#    format_listener:
-#        rules:
-#            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
-#    param_fetcher_listener: true
-#    access_denied_listener:
-#        json: true
-#    view:
-#        view_response_listener: 'force'
-#        formats:
-#            json: true
+        - { path: ^/admin$, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        #        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }

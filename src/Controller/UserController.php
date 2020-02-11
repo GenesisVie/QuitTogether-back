@@ -2,20 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-class TestController extends AbstractController
+class UserController extends AbstractController
 {
     /**
-
-     * @Route("/test", name="test")
+     * @Route("/admin/user", name="user")
      */
     public function index()
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([]);
-//        dump()
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController',
+        ]);
     }
 }

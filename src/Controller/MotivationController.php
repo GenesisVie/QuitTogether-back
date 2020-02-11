@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MotivationController extends AbstractController
 {
     /**
-     * @Route("/motivation", name="motivation")
+     * @Route("/admin/motivation", name="motivation")
      */
     public function index()
     {
