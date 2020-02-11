@@ -20,19 +20,19 @@
         <table class="table table-bordered">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Date de création</th>
+                <th>Titre</th>
+                <th>Crée le</th>
+                <th>Modifié le</th>
                 <th width="280px">Action</th>
 
             </tr>
-            {% for i in 1..5 %}
+            {% for motivation in motivations %}
                 <tr>
 
-                    <td>fdsfsd</td>
-                    <td>sfddsf</td>
-                    <td>fsddsf</td>
-                    <td>fsddsf</td>
+                    <td>{{ motivation.id }}</td>
+                    <td>{{motivation.title}}</td>
+                    <td>{{motivation.createdAt |date('d-m-Y')}}</td>
+                    <td>{{motivation.updatedAt |date('d-m-Y')}}</td>
 
 
 
