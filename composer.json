@@ -1,6 +1,12 @@
 {
-    "type": "project",
-    "license": "proprietary",
+    "name": "soukuku/quit-together-back",
+    "description": "Api and Bo for QuitTogether-App",
+    "authors": [
+        {
+            "name": "David A",
+            "email": "d.ananda974@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
@@ -40,6 +46,9 @@
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.4.*"
     },
+    "type": "project",
+    "license": "proprietary",
+
     "config": {
         "preferred-install": {
             "*": "dist"
