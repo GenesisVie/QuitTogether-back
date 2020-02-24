@@ -15,7 +15,9 @@
 /phpunit.xml
 /.idea/*
 .idea/*
-.env
+.env.local
+.env.test
+
 config/jwt
 ###< symfony/phpunit-bridge ###
 
