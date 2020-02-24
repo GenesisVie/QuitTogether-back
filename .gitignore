@@ -16,6 +16,7 @@
 /.idea/*
 .idea/*
 .env
+config/jwt
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
