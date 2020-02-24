@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,21 +38,33 @@ class UserStat
     private $since;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="userStat", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $userId;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $timeSaved;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $lifetimeSaved;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="statistic", cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function prePersist()
+    {
+        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
+    public function __construct()
+    {
+        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getId();
+    }
 
     public function getId(): ?int
     {
@@ -106,30 +119,6 @@ class UserStat
         return $this;
     }
 
-    public function getUserId(): ?User
-    {
-        return $this->userId;
-    }
-
-    public function setUserId(User $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    public function getTimeSaved(): ?float
-    {
-        return $this->timeSaved;
-    }
-
-    public function setTimeSaved(float $timeSaved): self
-    {
-        $this->timeSaved = $timeSaved;
-
-        return $this;
-    }
-
     public function getLifetimeSaved(): ?int
     {
         return $this->lifetimeSaved;
@@ -142,5 +131,15 @@ class UserStat
         return $this;
     }
 
-  
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }

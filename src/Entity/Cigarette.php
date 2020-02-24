@@ -22,9 +22,9 @@ class Cigarette
     private $date;
 
     /**
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="string")
      */
-    private $feelings = [];
+    private $feelings ;
 
     /**
      * @ORM\Column(type="integer")
@@ -41,6 +41,20 @@ class Cigarette
      */
     private $user;
 
+
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
+
+    public function __construct()
+    {
+        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -58,12 +72,12 @@ class Cigarette
         return $this;
     }
 
-    public function getFeelings(): ?array
+    public function getFeelings(): ?string
     {
         return $this->feelings;
     }
 
-    public function setFeelings(array $feelings): self
+    public function setFeelings(string $feelings): self
     {
         $this->feelings = $feelings;
 

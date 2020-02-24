@@ -1,0 +1,46 @@
+
+
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" class="">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only"></span>
+            </button>
+        </div>
+        <div class="p-4" style="height: 850px;">
+            <a href="/" class="logo"></a>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="/admin">
+                        <img src="{{ asset('/images/logo.jpg') }}" alt="C'est un logo pour arrêter de fumer lol" class="center-block" style="width: 60px;"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('user') }}"><span class="fa fa-user mr-3"></span> Utilisateur</a>
+                </li>
+                <li>
+                    <a href="{{ path('article_list') }}"><span class="fa fa-briefcase mr-3"></span> Article</a>
+                </li>
+                <li>
+                    <a href="{{ path('motivation') }}"><span class="fa fa-sticky-note mr-3"></span> Motivations</a>
+                </li>
+                <li>
+                    <a href="{{ path('achievement') }}"><span class="fa fa-paper-plane mr-3"></span> Achievements</a>
+                </li>
+            </ul>
+
+            <div class="mb-5 ml-5">
+                <a href="{{ path('app_logout') }}">
+                    <button type="button" class="btn btn-dark">Se déconnecter</button>
+                </a>
+            </div>
+        </div>
+
+    </nav>
+
+
+
+
+

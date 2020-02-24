@@ -19,6 +19,16 @@ class AchievementUserRepository extends ServiceEntityRepository
         parent::__construct($registry, AchievementUser::class);
     }
 
+    public function findAchievementUserByUserId($userId)
+    {
+        return $this->createQueryBuilder('au')
+            ->innerJoin('au.user', 'u', 'u.id = au.user')
+            ->innerJoin('au.achievement', 'a', 'a.id = au.achievement')
+            ->where('a.id = :id')
+            ->setParameter('id', $userId)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return AchievementUser[] Returns an array of AchievementUser objects
     //  */
