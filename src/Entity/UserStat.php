@@ -43,11 +43,6 @@ class UserStat
     private $lifetimeSaved;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="statistic", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
