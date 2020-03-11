@@ -51,7 +51,7 @@ class CreateUserCommand extends Command
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user, $password
         ));
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER','ROLE_ADMIN']);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
