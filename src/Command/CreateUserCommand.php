@@ -52,5 +52,8 @@ class CreateUserCommand extends Command
             $user, $password
         ));
         $user->setRoles(['ROLE_ADMIN']);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }
