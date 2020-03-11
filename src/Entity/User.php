@@ -88,11 +88,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="friend")
      */
     private $friends;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserStat", mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $statistic;
 
     /**
      * @ORM\PrePersist()
@@ -115,7 +110,6 @@ class User implements UserInterface
         $this->achievementUsers = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->friends = new ArrayCollection();
-        $this->userStats = new ArrayCollection();
     }
 
     public function getFullName(): ?string
@@ -406,55 +400,6 @@ class User implements UserInterface
             if ($friend->getFriend() === $this) {
                 $friend->setFriend(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|UserStat[]
-     */
-    public function getUserStats(): Collection
-    {
-        return $this->userStats;
-    }
-
-    public function addUserStat(UserStat $userStat): self
-    {
-        if (!$this->userStats->contains($userStat)) {
-            $this->userStats[] = $userStat;
-            $userStat->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserStat(UserStat $userStat): self
-    {
-        if ($this->userStats->contains($userStat)) {
-            $this->userStats->removeElement($userStat);
-            // set the owning side to null (unless already changed)
-            if ($userStat->getUser() === $this) {
-                $userStat->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getStatistic(): ?UserStat
-    {
-        return $this->statistic;
-    }
-
-    public function setStatistic(?UserStat $statistic): self
-    {
-        $this->statistic = $statistic;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newUser = null === $statistic ? null : $this;
-        if ($statistic->getUser() !== $newUser) {
-            $statistic->setUser($newUser);
         }
 
         return $this;
