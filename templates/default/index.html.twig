@@ -3,5 +3,32 @@
 {% block title %}Bienvenue{% endblock %}
 
 {% block body %}
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background: rgb(126,123,191);
+            background: linear-gradient(180deg, rgba(126,123,191,1) 100%);
+            text-align: center;
+        }
+
+
+        h1
+        {
+            color:black;
+            vertical-align: middle;
+        }
+    </style>
+
+    <div>
+   <h1 class="gras_italique_serif">
+       Bienvenue sur notre page
+   </h1>
+    </div>
+    <div class="mb-5 ml-5">
+        <a href="/login">
+            <button type="button" class="btn btn-dark">Se connecter</button>
+        </a>
+    </div>
 
 {% endblock %}
