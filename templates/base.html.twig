@@ -11,9 +11,7 @@
     {% endblock %}
 </head>
 <body>
-{% if is_granted('ROLE_ADMIN') %}
-    {{ include('default/navbar.html.twig') }}
-{% endif %}
+
 {% block body %}
 {% endblock %}
 {% block javascripts %}
