@@ -1,62 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}User index{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h1>Modifier les Utilisateurs </h1>
-                </div>
+    <h1>User index</h1>
 
-            </div>
-        </div>
-
-
-
-
-
-        <table class="table table-bordered">
+    <table class="table">
+        <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Date de création</th>
-                <th width="280px">Action</th>
-
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>StoppedAt</th>
+                <th>Birthday</th>
+                <th>PackageCost</th>
+                <th>actions</th>
             </tr>
-            {% for i in 1..5 %}
-                <tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.stoppedAt ? user.stoppedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
+                <td>{{ user.packageCost }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-                    <td>fdsfsd</td>
-                    <td>sfddsf</td>
-                    <td>fsddsf</td>
-                    <td>fsddsf</td>
-
-
-
-
-                    <td>
-
-                        <form action="" method="POST">
-
-                            <a href="/admin" class="fa fa-search btn btn-primary mr-5 ml-4"></a>
-
-                            <a href="/admin" class="fa fa-edit btn btn-secondary mr-5"></a>
-
-                            <a href="/admin" class="fa fa-trash btn btn-danger"></a>
-                        </form>
-
-                    </td>
-
-                </tr>
-            {% endfor %}
-        </table>
-        <div class="pull-right">
-            <a class="btn btn-success"> Créer nouveau</a>
-        </div>
-
-    </div>
-
+    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}
