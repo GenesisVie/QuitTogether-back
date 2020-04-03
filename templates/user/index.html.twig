@@ -1,84 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur{% endblock %}
+{% block title %}User index{% endblock %}
 
 {% block body %}
-    <div class="container">
+
+    <div class="container col-lg-7">
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <h1>Modifier les Utilisateurs </h1>
                 </div>
 
-            </div>
-        </div>
-        <table class="table table-bordered">
+    <h1>User index</h1>
+
+
+    <table class="table">
+        <thead>
             <tr>
-                <th>ID</th>
                 <th>Email</th>
-                <th>Nom</th>
-                <th>Role</th>
-                <th>Date de création</th>
-                <th width="280px">Action</th>
+                <th>Roles</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>CreatedAt</th>
+                <th>Birthday</th>
+                <th>actions</th>
             </tr>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email}}</td>
-                    <td>{{ user.fullName}}</td>
-                    <td>{{ user.roles.1}}</td>
-                    <td>{{ user.createdAt |date('d-m-Y') }}</td>
-                    <td>
-                        <form action="" method="POST">
-                            <a href="{{ path('admin') }}" class="fa fa-search btn btn-primary mr-5 ml-4"></a>
-                            <a href="{{ path('admin') }}" class="fa fa-edit btn btn-secondary mr-5"></a>
-                            <a href="{{ path('admin') }}" class="fa fa-trash btn btn-danger"></a>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-        <div class="pull-right">
-            <a class="btn btn-success"> Créer une nouvelle utilisateur</a>
-        </div>
-    </div>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/" >
-            <img src="images/stop.jpg" alt="C'est un logo pour arrêter de fumer lol" class="center-block" style="width: 60px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-
-            <ul class="navbar-nav mr-auto" style="font-size:20px;">
-                <li class="nav-item">
-                    <a class="nav-link" href="/article"> Article <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">Utilisateur</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/statistiques">Statistiques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/motivation">Motivation</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/faits">Faits</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                <button type="button" href="/connection" class="btn btn-primary btn-lg">
-                    Connection
-                </button>
-
-    </span>
-        </div>
-    </nav>
+    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}

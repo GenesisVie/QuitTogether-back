@@ -22,16 +22,12 @@ class BlogController extends AbstractFOSRestController
      */
     public function getAllBlogs()
     {
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
         $blogs = $this->getDoctrine()->getRepository(Blog::class)->findAll();
-        $jsonObject = $serializer->serialize($blogs, 'json', [
-            'circular_reference_handler' => function($object) {
-                return $object;
-            }
-        ]);
-        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
+        if ($blogs === null) {
+            return new Response('{}', 500, ['Content-Type' => 'application/json']);
+        }
+
+        return $this->handleView($this->view($blogs));
     }
 
     /**

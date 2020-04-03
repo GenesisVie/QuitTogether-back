@@ -3,42 +3,14 @@
 {% block title %}Motivations{% endblock %}
 
 {% block body %}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/" >
-            <img src="images/stop.jpg" alt="C'est un logo pour arrêter de fumer lol" class="center-block" style="width: 60px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+    <div class="container col-lg-7">
+        <div class="row ">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left">
+                    <h1>Modifier les Motivations</h1>
+                </div>
 
-            <ul class="navbar-nav mr-auto" style="font-size:20px;">
-                <li class="nav-item">
-                    <a class="nav-link" href="/article"> Article <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">Utilisateur</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/statistiques">Statistiques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/motivation">Motivation</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/faits">Faits</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                <button type="button" href="/connection" class="btn btn-primary btn-lg">
-                    Connection
-                </button>
-
-    </span>
+            </div>
         </div>
 
 
@@ -48,19 +20,19 @@
         <table class="table table-bordered">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Date de création</th>
+                <th>Titre</th>
+                <th>Crée le</th>
+                <th>Modifié le</th>
                 <th width="280px">Action</th>
 
             </tr>
-            {% for i in 1..5 %}
+            {% for motivation in motivations %}
                 <tr>
 
-                    <td>fdsfsd</td>
-                    <td>sfddsf</td>
-                    <td>fsddsf</td>
-                    <td>fsddsf</td>
+                    <td>{{ motivation.id }}</td>
+                    <td>{{motivation.title}}</td>
+                    <td>{{motivation.createdAt |date('d-m-Y')}}</td>
+                    <td>{{motivation.updatedAt |date('d-m-Y')}}</td>
 
 
 
