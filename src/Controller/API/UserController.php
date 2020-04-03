@@ -100,7 +100,7 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/post")
+     * @Rest\Post("/register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $userPasswordEncoder
      * @return Response
