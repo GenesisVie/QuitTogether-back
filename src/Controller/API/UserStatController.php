@@ -34,7 +34,7 @@ class UserStatController extends AbstractFOSRestController
         $user = $this->getUser();
         $userStats = [];
         foreach ($user->getUserStats() as $userStat) {
-            $userStats[$userStat->getId()] = [
+            $userStats[] = [
                 'id' => $userStat->getId(),
                 'date' => $userStat->getDate(),
                 'moneyEco' => $userStat->getMoneyEconomised(),
@@ -43,12 +43,11 @@ class UserStatController extends AbstractFOSRestController
             ];
         }
 
-        $jsonObject = $serializer->serialize($userStats, 'json', [
-           'circular_reference_handler' => function($object) {
-            return $object;
-           }
-        ]);
-        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
+        if ($userStats === null) {
+            return new Response('{}', 500, ['Content-Type' => 'application/json']);
+        }
+
+        return $this->handleView($this->view($userStats));
     }
 
     /**
