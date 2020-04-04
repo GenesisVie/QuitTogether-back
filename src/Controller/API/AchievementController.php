@@ -41,7 +41,7 @@ class AchievementController extends AbstractFOSRestController
      * Get achievements by UserID
      * @Rest\Get("/user")
      */
-    public function getBlogById()
+    public function getAchievementById()
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
