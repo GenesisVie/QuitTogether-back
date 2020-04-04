@@ -30,6 +30,7 @@ class zStatisticFixtures extends Fixture
         foreach ($statistics as $statistic) {
             foreach ($users as $user) {
                 $userStat = new UserStat();
+                $userStat->setTitle($statistic->getTitle());
                 $userStat->setLifetimeSaved($statistic->getLifetimeSaved());
                 $userStat->setCigarettesSaved($statistic->getUnsmokedCigarette());
                 $userStat->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
