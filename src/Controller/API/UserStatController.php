@@ -36,6 +36,7 @@ class UserStatController extends AbstractFOSRestController
         foreach ($user->getUserStats() as $userStat) {
             $userStats[] = [
                 'id' => $userStat->getId(),
+                'title' => $userStat->getTitle(),
                 'date' => $userStat->getDate(),
                 'moneyEco' => $userStat->getMoneyEconomised(),
                 'cigarettes' => $userStat->getCigarettesSaved(),
