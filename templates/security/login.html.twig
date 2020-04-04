@@ -3,6 +3,51 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-color: #003f5c;
+
+    }
+    h1
+    {
+        margin-top: 30px;
+        font-size: 90px;
+        color: #fb5b5a;
+        font-family: Trebuchet MS, sans-serif;
+        text-align: center;
+    }
+    input
+    {
+        height: 50px;
+        width: 300px;
+    }
+    form
+    {
+        margin-top: 60px;
+    }
+    ::placeholder
+    {
+        padding: 20px;
+        color: #003f5c;
+    }
+.pwd, .email
+    {
+        border-radius: 35px;
+    background-color: #465881;
+    border-color: #465881;
+    border:none;
+    width: 200px;
+    }
+    .btn
+    {
+        border-radius: 35px;
+        background-color: #fb5b5a;
+        color: white;
+        margin-top: 100px;
+    }
+</style>
+
     <div>
         <div class="wrapper fadeInDown">
             <div id="formContent">
@@ -15,47 +60,52 @@
                             <button class="btn btn-primary btn-lg">
                                 Logout
                             </button>
+
                         </a>
 
                     </div>
 
-                {% endif %}
+
             </div>
         </div>
     </div>
+{% else %}
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <body>
     <div class="container">
         <div class="col-md-12 mx-auto text-center">
         </div>
-        <h1 style="text-align:center;margin-top: 200px; font-family:Oswald">CONNECTEZ-VOUS</h1>
+        <a href="/">
+        <button class="btn" type="submit">
+            Retourner a l'accueil
+        </button>
+        </a>
+        <h1>Connexion</h1>
         <div class="row">
+
             <div class="col-md-4 mx-auto">
                 <div class="myform form ">
                     <form action="" method="post" name="login">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
+
                         <div class="form-group">
-                            <label for="inputPassword" style="margin-top: 50px; font-family:Oswald;">Login</label>
-                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                            <input class="email" type="email" placeholder="Email..." value="{{ last_username }}" name="email" id="inputEmail"
                                    class="form-control" style="width:350px; display:block; margin:auto" required
                                    autofocus>
                         </div>
-                        <label for="inputPassword" style="margin-top: 50px; font-family:Oswald;">Mot de passe</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control"
+
+                        <input class="pwd" type="password" placeholder="Password..." name="password" id="inputPassword" class="form-control"
                                style="width:350px; display:block; margin:auto;" required>
                         <input type="hidden" name="_csrf_token"
                                value="{{ csrf_token('authenticate') }}">
-                        <button class="btn btn-lg btn-primary col-6 offset-3" style="margin-top: 50px" type="submit">
-                            Se connecter
+                        <button class="btn col-6 offset-3" type="submit">
+                            Connexion
                         </button>
+
                     </form>
+
                 </div>
             </div>
         </div>
@@ -64,17 +114,8 @@
 
 
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
 
 
 
+    {% endif %}
 {% endblock %}
