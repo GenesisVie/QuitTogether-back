@@ -8,29 +8,47 @@
 
         background-repeat: no-repeat;
         background-color: #003f5c;
+        margin-top: 50px;
+    }
+    tr
+    {
+        color: #fb5b5a;
+    }
+    .table td
+    {
+        border:none;
+    }
+    .list-group-item
+    {
+        background-color:#003f5c;
+        color: #fb5b5a;
+        border: none;
     }
 </style>
 <div class="d-flex" id="wrapper">
 
 
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class=" border-right" id="sidebar-wrapper">
         <div class="list-group list-group-flush">
             <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action bg-light">Utilisateur</a>
-            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action bg-light">Blog</a>
-            <a href="" class="list-group-item list-group-item-action bg-light">Statistiques</a>
+            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action t">Utilisateur</a>
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
+            <button type="button" class="btn btn-dark">
+            <a href="{{ path('user_new') }}">Create new</a>
+            </button>
 
         </div>
     </div>
 
-    <div class="container col-lg-7">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <h1>Modifier les Utilisateurs </h1>
                 </div>
 
-    <h1>User index</h1>
+
 
 
     <table class="table">
@@ -55,8 +73,12 @@
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <button type="button" class="btn btn-dark">
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Show</a>
+                    </button>
+                        <button type="button" class="btn btn-dark">
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                        </button>
                 </td>
             </tr>
         {% else %}
@@ -67,5 +89,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+
 {% endblock %}

@@ -8,24 +8,43 @@
 
             background-repeat: no-repeat;
             background-color: #003f5c;
+            margin-top: 50px;
         }
+        tr
+        {
+            color: #fb5b5a;
+        }
+        .table td
+        {
+            border:none;
+        }
+
         .page
         {
             width: 2000px;
+        }
+        .list-group-item
+        {
+            background-color:#003f5c;
+            color: #fb5b5a;
+            border: none;
         }
     </style>
     <div class="d-flex" id="wrapper">
 
 
-        <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="border-right" id="sidebar-wrapper">
             <div class="list-group list-group-flush">
                 <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-                <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action bg-light">Utilisateur</a>
-                <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action bg-light">Blog</a>
-                <a href="" class="list-group-item list-group-item-action bg-light">Statistiques</a>
-
+                <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
+                <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+                <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
+                <button type="button" class="btn btn-dark">
+                    <a href="{{ path('blog_new') }}">Create new</a>
+                </button>
             </div>
         </div>
+
         <div class="page">
 
             <table class="table">
@@ -48,10 +67,15 @@
                         <td>{{ blog.description }}</td>
                         <td>{{ blog.image }}</td>
                         <td>
-                            <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-                            <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+                            <button type="button" class="btn btn-dark">
+                            <a href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+                            </button>
+                            <button type="button" class="btn btn-dark">
+                            <a href="{{ path('blog_edit', {'id': blog.id}) }}">Edit</a>
+                            </button>
                         </td>
                     </tr>
+
                 {% else %}
                     <tr>
                         <td colspan="6">no records found</td>
@@ -60,7 +84,7 @@
                 </tbody>
             </table>
 
-            <a href="{{ path('blog_new') }}">Create new</a>
+
         </div>
 
 
