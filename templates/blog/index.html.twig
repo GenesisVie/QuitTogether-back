@@ -3,39 +3,71 @@
 {% block title %}Blog index{% endblock %}
 
 {% block body %}
-    <h1>Blog index</h1>
+    <style>
+        body {
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CreatedAt</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for blog in blogs %}
-            <tr>
-                <td>{{ blog.id }}</td>
-                <td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ blog.title }}</td>
-                <td>{{ blog.description }}</td>
-                <td>{{ blog.image }}</td>
-                <td>
-                    <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-                    <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            background-repeat: no-repeat;
+            background-color: #003f5c;
+        }
+        .page
+        {
+            width: 2000px;
+        }
+    </style>
+    <div class="d-flex" id="wrapper">
 
-    <a href="{{ path('blog_new') }}">Create new</a>
-{% endblock %}
+
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action bg-light">Utilisateur</a>
+                <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action bg-light">Blog</a>
+                <a href="" class="list-group-item list-group-item-action bg-light">Statistiques</a>
+
+            </div>
+        </div>
+        <div class="page">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>CreatedAt</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for blog in blogs %}
+                    <tr>
+                        <td>{{ blog.id }}</td>
+                        <td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.description }}</td>
+                        <td>{{ blog.image }}</td>
+                        <td>
+                            <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+                            <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('blog_new') }}">Create new</a>
+        </div>
+
+
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            {% endblock %}
+
+

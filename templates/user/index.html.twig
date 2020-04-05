@@ -3,6 +3,25 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
+<style>
+    body {
+
+        background-repeat: no-repeat;
+        background-color: #003f5c;
+    }
+</style>
+<div class="d-flex" id="wrapper">
+
+
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action bg-light">Utilisateur</a>
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action bg-light">Blog</a>
+            <a href="" class="list-group-item list-group-item-action bg-light">Statistiques</a>
+
+        </div>
+    </div>
 
     <div class="container col-lg-7">
         <div class="row">
