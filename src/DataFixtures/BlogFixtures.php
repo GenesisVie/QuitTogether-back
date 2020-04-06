@@ -21,7 +21,7 @@ class BlogFixtures extends Fixture
             $blog = new Blog();
             $blog->setTitle('BLOG-' . $i);
             $blog->setDescription('BLOG Desc-'.$i);
-            $blog->setImage('string');
+            $blog->setImageFile('friend.png');
             $manager->persist($blog);
         }
 

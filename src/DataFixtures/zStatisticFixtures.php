@@ -20,7 +20,7 @@ class zStatisticFixtures extends Fixture
             $statistic->setLifetimeSaved( $i /2);
             $statistic->setUnsmokedCigarette( $i);
             $statistic->setMoneyEconomised( $i);
-            $statistic->setImage('string');
+            $statistic->setImage('stats.png');
             $manager->persist($statistic);
         }
         $manager->flush();
