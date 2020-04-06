@@ -3,87 +3,88 @@
 {% block title %}Bienvenue!{% endblock %}
 
 {% block body %}
-    <style>
-        body {
+<style>
+    body {
 
-            background-repeat: no-repeat;
-            background-color: #003f5c;
-            text-align: center;
-            height: 100%;
-        }
+        background-repeat: no-repeat;
+        background-color: #003f5c;
+        text-align: center;
+        height: 100%;
+    }
 
-        h1 {
-            color: black;
-            text-align:center;
-            font-size: 60px;
-            margin-top: 30px;
-        }
-        .btn
-        {
-            margin-top: 130px;
-            width: 200px;
-            height: 50px;
-        }
-        .desc
-        {
-            margin-top: 120px;
-            font-size: 20px;
-        }
-        .slogan
-        {
-            margin-top: 80px;
-            color:#fb5b5a;
-            font-size: 70px;
-        }
-        .list-group-item
-        {
-            background-color:#003f5c;
-            color: #fb5b5a;
-            border: none;
-        }
-        .footer {
-            height: 100px;
-            position: absolute;
-            bottom: 0;
-        }
-    </style>
+    h1 {
+        color: black;
+        text-align: center;
+        font-size: 60px;
+        margin-top: 30px;
+    }
 
+    .btn {
+        margin-top: 130px;
+        width: 200px;
+        height: 50px;
+    }
 
-                {% if app.user %}
-                <div class="d-flex" id="wrapper">
-                    <div class="mb-3">
-                        <div class="list-group list-group-flush">
-                            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
-                            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
-                            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
-                            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
-                            <div class="footer">
-                                <a href="{{ path('app_logout') }}">
-                                    <button class="btn btn-primary btn-lg">
-                                        Logout
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    .desc {
+        margin-top: 120px;
+        font-size: 20px;
+    }
+
+    .slogan {
+        margin-top: 80px;
+        color: #fb5b5a;
+        font-size: 70px;
+    }
+
+    .list-group-item {
+        background-color: #003f5c;
+        color: #fb5b5a;
+        border: none;
+        margin-top: 30px;
+        width: 200px;
+    }
+    .footer
+    {
+        margin-top: 300px;
+    }
+</style>
+{% if app.user %}
+<h1>
+    Bienvenue sur QuitTogether
+</h1>
+<div class="d-flex" id="wrapper">
+    <div class="mb-3">
+        <div class="list-group list-group-flush">
+            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
+            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
+            <div class="footer">
+                <a href="{{ path('app_logout') }}">
+                    <button class="btn btn-primary btn-lg">
+                        Logout
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
     {% else %}
         <div class="container">
 
 
-
-
-
-
-        <h1>Bienvenue sur QuitTogether!</h1>
-<div class="desc">
-    QuitTogether est une application mobile qui permet a ses utilisateurs d'arreter ou de diminuer la cigarette. </br>
-    Notre but est d'apporter une plateforme aux personnes qui souhaitent se débrasser de cette addiction qui est la cigarette.</br>
-    Et de les aider dans leur aventure pour accomplir ce but.</br>
-    Pour l'instant ce site n'est destiné qu'a l'administration de l'application. </br>
-    Notre plateforme est seulement destiné pour les mobiles, alors je vous invite a télécharger l'application "QuitTogether".</br>
-</div>
+            <h1>Bienvenue sur QuitTogether!</h1>
+            <div class="desc">
+                QuitTogether est une application mobile qui permet a ses utilisateurs d'arreter ou de diminuer la
+                cigarette. </br>
+                Notre but est d'apporter une plateforme aux personnes qui souhaitent se débrasser de cette addiction qui
+                est la cigarette.</br>
+                Et de les aider dans leur aventure pour accomplir ce but.</br>
+                Pour l'instant ce site n'est destiné qu'a l'administration de l'application. </br>
+                Notre plateforme est seulement destiné pour les mobiles, alors je vous invite a télécharger
+                l'application "QuitTogether".</br>
+            </div>
             <div class="col-md-2 offset-md-5">
                 <a href="{{ path('app_login') }}">
                     <button type="button" class="btn btn-dark">Se connecter</button>
@@ -92,7 +93,7 @@
             <div class="slogan">
                 Quit together for a better future.
             </div>
-    </div>
+        </div>
 
-{% endif %}
-{% endblock %}
+    {% endif %}
+    {% endblock %}
