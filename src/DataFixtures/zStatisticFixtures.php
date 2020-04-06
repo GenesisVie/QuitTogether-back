@@ -37,6 +37,7 @@ class zStatisticFixtures extends Fixture
                 $userStat->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
                 $userStat->setMoneyEconomised($user->getPackageCost()  * (round($statistic->getUnsmokedCigarette() / 20, 1)));
                 $userStat->setStatistic($statistic);
+                $userStat->setImageUrl($statistic->getImage());
                 $userStat->setUser($user);
                 $manager->persist($userStat);
             }

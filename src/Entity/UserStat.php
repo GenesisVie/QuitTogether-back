@@ -53,6 +53,11 @@ class UserStat
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageUrl;
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -156,6 +161,18 @@ class UserStat
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }
