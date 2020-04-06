@@ -31,6 +31,7 @@ class UserFixtures extends Fixture
             ));
             $user->setPackageCost(10);
             $user->setRoles(['ROLE_ADMIN']);
+            $user->setImage('user.png');
             $manager->persist($user);
         }
 

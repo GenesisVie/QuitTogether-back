@@ -18,9 +18,10 @@ class zStatisticFixtures extends Fixture
             $statistic->setTitle('Statistic-' . $i);
             $statistic->setDescription('Bravo ' . $i . ' clopes non fumées');
             $statistic->setLifetimeSaved( $i /2);
+            $statistic->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
             $statistic->setUnsmokedCigarette( $i);
             $statistic->setMoneyEconomised( $i);
-            $statistic->setImage('string');
+            $statistic->setImage('stats.png');
             $manager->persist($statistic);
         }
         $manager->flush();
