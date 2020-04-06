@@ -41,6 +41,7 @@ class UserStatController extends AbstractFOSRestController
                 'moneyEco' => $userStat->getMoneyEconomised(),
                 'cigarettes' => $userStat->getCigarettesSaved(),
                 'lifetime' => $userStat->getLifetimeSaved(),
+                'image' => $userStat->getImageUrl(),
             ];
         }
 
