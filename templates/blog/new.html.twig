@@ -3,9 +3,28 @@
 {% block title %}New Blog{% endblock %}
 
 {% block body %}
+<style>
+    body {
+
+        background-repeat: no-repeat;
+        background-color: #003f5c;
+        margin-top: 50px;
+        color: #fb5b5a;
+        text-align: center;
+    }
+    h1
+    {
+        color: #fb5b5a;
+    }
+    .btn
+    {
+        margin-top: 20px;
+    }
+    </style>
     <h1>Create new Blog</h1>
 
     {{ include('blog/_form.html.twig') }}
-
-    <a href="{{ path('blog_index') }}">back to list</a>
+<button type="button" class="btn btn-dark">
+    <a href="{{ path('blog_index') }}">Back to the list</a>
+</button>
 {% endblock %}

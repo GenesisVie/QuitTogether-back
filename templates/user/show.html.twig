@@ -3,6 +3,36 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background-color: #003f5c;
+            margin-top: 50px;
+            color: #fb5b5a;
+            text-align: center;
+        }
+        .table td
+        {
+            border:none;
+            color: #fb5b5a;
+        }
+        .table th
+        {
+            border:none;
+            color: #fb5b5a;
+        }
+        h1
+        {
+            color: #fb5b5a;
+            font-size: 80px;
+        }
+        .btn
+        {
+            margin-top: 20px;
+        }
+    </style>
+
     <h1>User</h1>
 
     <table class="table">
@@ -53,10 +83,11 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
+<button class="btn btn-dark">
+    <a href="{{ path('user_index') }}">Back to the list</a>
+</button>
+    <button class="btn btn-dark">
+    <a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+    </button>
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

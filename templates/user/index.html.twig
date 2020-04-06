@@ -3,15 +3,63 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
+<style>
+    body {
 
-    <div class="container col-lg-7">
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h1>Modifier les Utilisateurs </h1>
-                </div>
+        background-repeat: no-repeat;
+        background-color: #003f5c;
+        height: 100%;
+    }
+    tr
+    {
+        color: #fb5b5a;
+    }
+    .table td
+    {
+        border:none;
+    }
+    h1
+    {
+        text-align: center;
+        color: #fb5b5a;
+    }
+    .list-group-item
+    {
+        background-color:#003f5c;
+        color: #fb5b5a;
+        border: none;
+    }
+    .footer {
+        height: 100px;
+        position: absolute;
+        bottom: 0;
+    }
+</style>
+<h1>
+    Utilisateurs
+</h1>
+<div class="d-flex" id="wrapper">
+    <div class="mb-3">
+        <div class="list-group list-group-flush">
+            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
+            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
+            <button class="btn btn-primary">
+            <a href="{{ path('user_new') }}">Create new</a>
+            </button>
 
-    <h1>User index</h1>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <a href="{{ path('app_logout') }}">
+            <button class="btn btn-primary btn-lg">
+                Logout
+            </button>
+        </a>
+    </div>
 
 
     <table class="table">
@@ -23,7 +71,7 @@
                 <th>Lastname</th>
                 <th>CreatedAt</th>
                 <th>Birthday</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -36,8 +84,12 @@
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <button type="button" class="btn btn-dark">
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Show</a>
+                    </button>
+                        <button type="button" class="btn btn-dark">
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                        </button>
                 </td>
             </tr>
         {% else %}
@@ -48,5 +100,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+
 {% endblock %}

@@ -3,6 +3,35 @@
 {% block title %}Blog{% endblock %}
 
 {% block body %}
+    <style>
+    body {
+
+    background-repeat: no-repeat;
+    background-color: #003f5c;
+    margin-top: 50px;
+    color: #fb5b5a;
+    text-align: center;
+    }
+    .table td
+    {
+        border:none;
+        color: #fb5b5a;
+    }
+    .table th
+    {
+        border:none;
+        color: #fb5b5a;
+    }
+    h1
+    {
+    color: #fb5b5a;
+        font-size: 80px;
+    }
+    .btn
+    {
+    margin-top: 20px;
+    }
+    </style>
     <h1>Blog</h1>
 
     <table class="table">
@@ -29,10 +58,11 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('blog_index') }}">back to list</a>
-
-    <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
-
+<button type="button" class="btn btn-dark">
+    <a href="{{ path('blog_index') }}">Back to the list</a>
+</button>
+    <button type="button" class="btn btn-dark">
+    <a href="{{ path('blog_edit', {'id': blog.id}) }}">Edit</a>
+    </button>
     {{ include('blog/_delete_form.html.twig') }}
 {% endblock %}
