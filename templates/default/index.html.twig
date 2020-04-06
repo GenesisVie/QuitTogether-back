@@ -43,30 +43,33 @@
         margin-top: 30px;
         width: 200px;
     }
-    .footer
+    .mb-3
     {
-        margin-top: 300px;
+        text-align: left;
     }
+
 </style>
 {% if app.user %}
 <h1>
     Bienvenue sur QuitTogether
 </h1>
+
 <div class="d-flex" id="wrapper">
+
     <div class="mb-3">
         <div class="list-group list-group-flush">
             <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
             <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
             <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
             <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
-            <div class="footer">
-                <a href="{{ path('app_logout') }}">
-                    <button class="btn btn-primary btn-lg">
-                        Logout
-                    </button>
-                </a>
-            </div>
         </div>
+    </div>
+    <div class="fixed-top offset-3 col-12">
+    <a href="{{ path('app_logout') }}">
+        <button class="btn btn-primary">
+            Logout
+        </button>
+    </a>
     </div>
 
 
