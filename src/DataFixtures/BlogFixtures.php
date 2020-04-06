@@ -21,7 +21,8 @@ class BlogFixtures extends Fixture
             $blog = new Blog();
             $blog->setTitle('BLOG-' . $i);
             $blog->setDescription('BLOG Desc-'.$i);
-            $blog->setImageFile('friend.png');
+            $blog->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+            $blog->setImage('friend.png');
             $manager->persist($blog);
         }
 
