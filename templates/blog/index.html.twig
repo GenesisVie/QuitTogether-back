@@ -8,7 +8,7 @@
 
             background-repeat: no-repeat;
             background-color: #003f5c;
-            margin-top: 50px;
+            height: 100%;
         }
         tr
         {
@@ -18,10 +18,14 @@
         {
             border:none;
         }
-
+        h1
+        {
+            text-align: center;
+            color: #fb5b5a;
+        }
         .page
         {
-            width: 2000px;
+            width: 100%;
         }
         .list-group-item
         {
@@ -29,19 +33,33 @@
             color: #fb5b5a;
             border: none;
         }
+        .footer {
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+        }
     </style>
+    <h1>
+        Articles
+    </h1>
+
     <div class="d-flex" id="wrapper">
-
-
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="mb-3">
             <div class="list-group list-group-flush">
-                <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
                 <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
                 <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
                 <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
-                <button type="button" class="btn btn-dark">
-                    <a href="{{ path('blog_new') }}">Create new</a>
+                <button class="btn btn-primary ">
+                    <a href="{{ path('user_new') }}">Create new</a>
                 </button>
+<div class="footer">
+    <a href="{{ path('app_logout') }}">
+        <button class="btn btn-primary btn-lg">
+            Logout
+        </button>
+    </a>
+</div>
             </div>
         </div>
 
@@ -55,7 +73,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Image</th>
-                    <th>actions</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,11 +102,11 @@
                 </tbody>
             </table>
 
-
+        </div>
         </div>
 
 
-    </div>
+
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

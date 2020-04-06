@@ -8,8 +8,8 @@
 
             background-repeat: no-repeat;
             background-color: #003f5c;
-            background-color: #465881;
             text-align: center;
+            height: 100%;
         }
 
         h1 {
@@ -35,29 +35,39 @@
             color:#fb5b5a;
             font-size: 70px;
         }
+        .list-group-item
+        {
+            background-color:#003f5c;
+            color: #fb5b5a;
+            border: none;
+        }
+        .footer {
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+        }
     </style>
 
 
-    <div>
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
                 {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">
+                <div class="d-flex" id="wrapper">
+                    <div class="mb-3">
+                        <div class="list-group list-group-flush">
+                            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
+                            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
+                            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+                            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
+                            <div class="footer">
+                                <a href="{{ path('app_logout') }}">
+                                    <button class="btn btn-primary btn-lg">
+                                        Logout
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                        </br>
 
-                        <button class="btn btn-primary btn-lg">
-                            Logout
-                        </button>
-                    </a>
-
-                </div>
-
-
-            </div>
-        </div>
-    </div>
     {% else %}
         <div class="container">
 
