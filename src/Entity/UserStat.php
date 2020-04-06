@@ -35,12 +35,22 @@ class UserStat
     /**
      * @ORM\Column(type="integer")
      */
-    private $since;
+    private $lifetimeSaved;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Statistics", inversedBy="userStats")
      */
-    private $lifetimeSaved;
+    private $statistic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userStats")
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
 
     /**
      * @ORM\PrePersist()
@@ -102,18 +112,6 @@ class UserStat
         return $this;
     }
 
-    public function getSince(): ?int
-    {
-        return $this->since;
-    }
-
-    public function setSince(int $since): self
-    {
-        $this->since = $since;
-
-        return $this;
-    }
-
     public function getLifetimeSaved(): ?int
     {
         return $this->lifetimeSaved;
@@ -126,6 +124,18 @@ class UserStat
         return $this;
     }
 
+    public function getStatistic(): ?Statistics
+    {
+        return $this->statistic;
+    }
+
+    public function setStatistic(?Statistics $statistic): self
+    {
+        $this->statistic = $statistic;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -134,6 +144,18 @@ class UserStat
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

@@ -19,7 +19,7 @@ class UserType extends AbstractType
 //            ->add('createdAt')
 //            ->add('updatedAt')
 //            ->add('stopped_at')
-//            ->add('birthday')
+            ->add('birthday')
             ->add('packageCost')
         ;
     }

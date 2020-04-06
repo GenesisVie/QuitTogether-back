@@ -32,12 +32,23 @@ class UserStatController extends AbstractFOSRestController
 
         /** @var User $user */
         $user = $this->getUser();
-        $jsonObject = $serializer->serialize($user->getUserStats()->getValues(), 'json', [
-           'circular_reference_handler' => function($object) {
-            return $object;
-           }
-        ]);
-        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
+        $userStats = [];
+        foreach ($user->getUserStats() as $userStat) {
+            $userStats[] = [
+                'id' => $userStat->getId(),
+                'title' => $userStat->getTitle(),
+                'date' => $userStat->getDate(),
+                'moneyEco' => $userStat->getMoneyEconomised(),
+                'cigarettes' => $userStat->getCigarettesSaved(),
+                'lifetime' => $userStat->getLifetimeSaved(),
+            ];
+        }
+
+        if ($userStats === null) {
+            return new Response('{}', 500, ['Content-Type' => 'application/json']);
+        }
+
+        return $this->handleView($this->view($userStats));
     }
 
     /**

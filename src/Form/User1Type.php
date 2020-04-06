@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class User1Type extends AbstractType
 {
@@ -21,6 +22,8 @@ class User1Type extends AbstractType
             ->add('birthday')
             ->add('packageCost')
             ->add('statistic')
+            ->add('imageFile', VichImageType::class)
+
         ;
     }
 

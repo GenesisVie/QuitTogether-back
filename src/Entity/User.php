@@ -6,8 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -90,9 +94,26 @@ class User implements UserInterface
     private $friends;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
+     */
+    private $userStats;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
+
     public function prePersist()
     {
         $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
@@ -110,6 +131,7 @@ class User implements UserInterface
         $this->achievementUsers = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->friends = new ArrayCollection();
+        $this->userStats = new ArrayCollection();
     }
 
     public function getFullName(): ?string
@@ -403,5 +425,63 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|UserStat[]
+     */
+    public function getUserStats(): Collection
+    {
+        return $this->userStats;
+    }
+
+    public function addUserStat(UserStat $userStat): self
+    {
+        if (!$this->userStats->contains($userStat)) {
+            $this->userStats[] = $userStat;
+            $userStat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserStat(UserStat $userStat): self
+    {
+        if ($this->userStats->contains($userStat)) {
+            $this->userStats->removeElement($userStat);
+            // set the owning side to null (unless already changed)
+            if ($userStat->getUser() === $this) {
+                $userStat->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 }

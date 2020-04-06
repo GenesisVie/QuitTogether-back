@@ -18,13 +18,13 @@ use Symfony\Component\Serializer\Serializer;
 
 /**
  * UserController
- * @Rest\Route("/api/user", name="api_")
+ * @Rest\Route("/", name="api_")
  */
 class UserController extends AbstractFOSRestController
 {
     /**
      * List all Users
-     * @Rest\Get("/all")
+     * @Rest\Get("api/user/all")
      * @IsGranted("ROLE_ADMIN")
      */
     public function getAllUser()
@@ -35,7 +35,7 @@ class UserController extends AbstractFOSRestController
 
     /**
      * List all Users
-     * @Rest\Get("/id/{id}")
+     * @Rest\Get("api/user//id/{id}")
      * @IsGranted("ROLE_ADMIN")
      */
     public function getUserById($id)
@@ -45,8 +45,7 @@ class UserController extends AbstractFOSRestController
         $serializer = new Serializer($normalizers, $encoders);
 
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $id]);
-        dump($user->getFriends()->getValues());
-        die;
+
         $jsonObject = $serializer->serialize($user, 'json', [
             'circular_reference_handler' => function($object) {
                 return $object;
@@ -57,7 +56,7 @@ class UserController extends AbstractFOSRestController
 
     /**
      * List all Users
-     * @Rest\Get("/me")
+     * @Rest\Get("api/user/me")
      */
     public function getMyDetails()
     {
@@ -76,7 +75,7 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/change-password")
+     * @Rest\Post("user/change-password")
      * @param Request $request
      * @param UserPasswordEncoderInterface $userPasswordEncoder
      * @return Response
@@ -100,11 +99,10 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post("/register")
+     * @Rest\Post("user/register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $userPasswordEncoder
      * @return Response
-     * @IsGranted("ROLE_ADMIN")
      */
     public function postUser(Request $request, UserPasswordEncoderInterface $userPasswordEncoder)
     {
