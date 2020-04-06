@@ -6,8 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -95,9 +99,21 @@ class User implements UserInterface
     private $userStats;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
+
     public function prePersist()
     {
         $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
@@ -440,5 +456,32 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 }
