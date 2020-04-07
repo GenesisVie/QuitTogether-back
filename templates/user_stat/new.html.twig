@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New UserStat{% endblock %}
+
+{% block body %}
+    <h1>Create new UserStat</h1>
+
+    {{ include('user_stat/_form.html.twig') }}
+
+    <a href="{{ path('user_stat_index') }}">back to list</a>
+{% endblock %}
