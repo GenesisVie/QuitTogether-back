@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background-color: #003f5c;
+            margin-top: 50px;
+            color: #fb5b5a;
+            text-align: center;
+        }
+        .table td
+        {
+            border:none;
+            color: #fb5b5a;
+        }
+        .table th
+        {
+            border:none;
+            color: #fb5b5a;
+        }
+        h1
+        {
+            color: #fb5b5a;
+            font-size: 80px;
+        }
+        .btn
+        {
+            margin-top: 20px;
+        }
+    </style>
+    <h1>Statistics</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statistic.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ statistic.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ statistic.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ statistic.image }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ statistic.updatedAt ? statistic.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MoneyEconomised</th>
+                <td>{{ statistic.moneyEconomised }}</td>
+            </tr>
+            <tr>
+                <th>LifetimeSaved</th>
+                <td>{{ statistic.lifetimeSaved }}</td>
+            </tr>
+            <tr>
+                <th>UnsmokedCigarette</th>
+                <td>{{ statistic.unsmokedCigarette }}</td>
+            </tr>
+        </tbody>
+    </table>
+<button class="btn btn-dark">
+    <a href="{{ path('statistics_index') }}">Retourner à la liste</a>
+</button>
+    <button class="btn btn-dark">
+    <a href="{{ path('statistics_edit', {'id': statistic.id}) }}">Modifier</a>
+    </button>
+    {{ include('statistics/_delete_form.html.twig') }}
+{% endblock %}

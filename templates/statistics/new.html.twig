@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Statistics{% endblock %}
+
+{% block body %}
+    <h1>Create new Statistics</h1>
+
+    {{ include('statistics/_form.html.twig') }}
+<button type="button" class="btn btn-dark">
+    <a href="{{ path('statistics_index') }}">Back to the list</a>
+</button>
+{% endblock %}

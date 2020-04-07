@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistics index{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background-color: #003f5c;
+
+        }
+        tr
+        {
+            color: #fb5b5a;
+        }
+        .table td
+        {
+            border:none;
+        }
+        h1
+        {
+            text-align: center;
+            color: #fb5b5a;
+        }
+        .list-group-item {
+            background-color: #003f5c;
+            color: #fb5b5a;
+            border: none;
+            margin-top: 30px;
+            width: 200px;
+        }
+        .footer {
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+        }
+        .fixed-top
+        {
+            margin-top: 20px;
+        }
+        .crea
+        {
+            margin-top: 20px;
+        }
+        .btn
+        {
+            color: #fb5b5a;
+            bacbackground-color: "#465881"
+        }
+    </style>
+    <h1>Statistiques</h1>
+<div class="d-flex" id="wrapper">
+    <div class="mb-3">
+        <div class="list-group list-group-flush">
+            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
+            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
+            <a href="{{ path('statistics_index') }}" class="list-group-item list-group-item-action ">Statistiques</a>
+            <div class="crea col-12">
+                <button class="btn btn-primary btn-lg">
+                    <a href="{{ path('statistics_new') }}">Créer un nouveau</a>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fixed-top col-6">
+        <a href="{{ path('app_logout') }}">
+            <button class="btn btn-primary btn-lg">
+                Logout
+            </button>
+        </a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>UpdatedAt</th>
+                <th>MoneyEconomised</th>
+                <th>LifetimeSaved</th>
+                <th>UnsmokedCigarette</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statistic in statistics %}
+            <tr>
+                <td>{{ statistic.id }}</td>
+                <td>{{ statistic.title }}</td>
+                <td>{{ statistic.description }}</td>
+                <td>{{ statistic.image }}</td>
+                <td>{{ statistic.updatedAt ? statistic.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ statistic.moneyEconomised }}</td>
+                <td>{{ statistic.lifetimeSaved }}</td>
+                <td>{{ statistic.unsmokedCigarette }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary ">
+                    <a href="{{ path('statistics_show', {'id': statistic.id}) }}">Détails</a>
+                    </button>
+                        <button type="button" class="btn btn-primary ">
+                    <a href="{{ path('statistics_edit', {'id': statistic.id}) }}">Modifier</a>
+                        </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
