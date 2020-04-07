@@ -5,6 +5,7 @@ namespace App\Controller\API;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
 use App\Form\UserType;
+use App\Form\UserUpdateType;
 use Doctrine\Persistence\ObjectManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -66,7 +67,14 @@ class UserController extends AbstractFOSRestController
 
         /** @var User $user */
         $user = $this->getUser();
-        $jsonObject = $serializer->serialize($user, 'json', [
+        $userData = [
+            'stoppedAt' => $user->getStoppedAt(),
+            'packageCost' => $user->getPackageCost(),
+            'firstname'=>$user->getFirstname(),
+            'lastname'=>$user->getLastname(),
+            'image'=>$user->getImage(),
+        ];
+        $jsonObject = $serializer->serialize($userData, 'json', [
             'circular_reference_handler' => function($object) {
                 return $object;
             }
@@ -118,6 +126,27 @@ class UserController extends AbstractFOSRestController
             $em->persist($user);
             $em->flush();
             return $this->handleview($this->view(['status' => 'User created'], response::HTTP_CREATED));
+        }
+        return $this->handleview($this->view($form->geterrors()));
+    }
+
+
+    /**
+     * @Rest\Post("api/user/update")
+     * @param Request $request
+     * @return Response
+     */
+    public function update(Request $request)
+    {
+        $user = $this->getUser();
+        $form = $this->createform(UserUpdateType::class, $user);
+        $data = json_decode($request->getcontent(), true);
+        $form->submit($data);
+        if ($form->issubmitted() && $form->isvalid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->handleview($this->view(['status' => 'User updated'], response::HTTP_CREATED));
         }
         return $this->handleview($this->view($form->geterrors()));
     }
