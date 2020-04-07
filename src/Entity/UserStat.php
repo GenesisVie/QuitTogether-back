@@ -63,12 +63,12 @@ class UserStat
      */
     public function prePersist()
     {
-        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setDate(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function __construct()
     {
-        $this->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setDate(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function __toString()

@@ -36,7 +36,7 @@ class UserController extends AbstractFOSRestController
 
     /**
      * List all Users
-     * @Rest\Get("api/user//id/{id}")
+     * @Rest\Get("api/user/id/{id}")
      * @IsGranted("ROLE_ADMIN")
      */
     public function getUserById($id)

@@ -116,17 +116,17 @@ class User implements UserInterface
 
     public function prePersist()
     {
-        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function __construct()
     {
-        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
         $this->cigarettes = new ArrayCollection();
         $this->achievementUsers = new ArrayCollection();
         $this->notes = new ArrayCollection();
