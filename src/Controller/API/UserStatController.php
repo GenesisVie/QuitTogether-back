@@ -6,6 +6,7 @@ use App\Entity\Statistic;
 use App\Entity\User;
 use App\Entity\UserStat;
 use App\Form\StatisticType;
+use App\Handler\StatisticHandler;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class UserStatController extends AbstractFOSRestController
      * List all Users
      * @Rest\Get("/me")
      */
-    public function getMyDetails()
+    public function getMyDetails(StatisticHandler $statisticHandler)
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -32,6 +33,7 @@ class UserStatController extends AbstractFOSRestController
 
         /** @var User $user */
         $user = $this->getUser();
+        $statisticHandler->updateUserStats($user);
         $userStats = [];
         foreach ($user->getUserStats() as $userStat) {
             $userStats[] = [

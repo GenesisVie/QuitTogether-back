@@ -89,11 +89,6 @@ class User implements UserInterface
     private $notes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="friend")
-     */
-    private $friends;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
      */
     private $userStats;
@@ -109,6 +104,16 @@ class User implements UserInterface
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $averagePerDay;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     */
+    private $friend;
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -132,6 +137,7 @@ class User implements UserInterface
         $this->notes = new ArrayCollection();
         $this->friends = new ArrayCollection();
         $this->userStats = new ArrayCollection();
+        $this->friend = new ArrayCollection();
     }
 
     public function getFullName(): ?string
@@ -397,37 +403,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Friend[]
-     */
-    public function getFriends(): Collection
-    {
-        return $this->friends;
-    }
-
-    public function addFriend(Friend $friend): self
-    {
-        if (!$this->friends->contains($friend)) {
-            $this->friends[] = $friend;
-            $friend->setFriend($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFriend(Friend $friend): self
-    {
-        if ($this->friends->contains($friend)) {
-            $this->friends->removeElement($friend);
-            // set the owning side to null (unless already changed)
-            if ($friend->getFriend() === $this) {
-                $friend->setFriend(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|UserStat[]
      */
     public function getUserStats(): Collection
@@ -483,5 +458,43 @@ class User implements UserInterface
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getAveragePerDay(): ?int
+    {
+        return $this->averagePerDay;
+    }
+
+    public function setAveragePerDay(int $averagePerDay): self
+    {
+        $this->averagePerDay = $averagePerDay;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFriend(): Collection
+    {
+        return $this->friend;
+    }
+
+    public function addFriend(self $friend): self
+    {
+        if (!$this->friend->contains($friend)) {
+            $this->friend[] = $friend;
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(self $friend): self
+    {
+        if ($this->friend->contains($friend)) {
+            $this->friend->removeElement($friend);
+        }
+
+        return $this;
     }
 }
