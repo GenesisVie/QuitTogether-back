@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Serializer;
 class UserStatController extends AbstractFOSRestController
 {
 /**
-     * List all Users
+     * List my UsersStat
      * @Rest\Get("/me")
      */
     public function getMyDetails(StatisticHandler $statisticHandler)
@@ -55,6 +55,7 @@ class UserStatController extends AbstractFOSRestController
     }
 
     /**
+     * create new userstat
      * @Rest\Post("/new-stat-user")
      * @param Request $request
      * @return Response

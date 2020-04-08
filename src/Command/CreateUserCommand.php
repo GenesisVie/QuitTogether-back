@@ -43,10 +43,10 @@ class CreateUserCommand extends Command
         $user = new User();
         $user->setFirstname($email);
         $user->setLastname($email);
-        $user->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $user->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $user->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $user->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $user->setUpdatedAt( new \DateTime('now'));
+        $user->setCreatedAt( new \DateTime('now'));
+        $user->setStoppedAt( new \DateTime('now'));
+        $user->setBirthday( new \DateTime('now'));
         $user->setEmail($email);
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user, $password

@@ -41,9 +41,9 @@ class FriendController extends AbstractFOSRestController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $friends= [];
+        $friends = [];
         $friendsDB = $user->getFriend();
-        $i=0;
+        $i = 0;
         /** @var User $value */
         foreach ($friendsDB->getValues() as $value) {
             $friends[] = [
@@ -57,5 +57,44 @@ class FriendController extends AbstractFOSRestController
             return new Response('{}', 500, ['Content-Type' => 'application/json']);
         }
 
-        return $this->handleView($this->view($friends));    }
+        return $this->handleView($this->view($friends));
+    }
+
+    /**
+     * Get my friendStat
+     * @Rest\Get("/all/user-stat")
+     */
+    public function getMyFriendsStats()
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $friends = [];
+        $friendsDB = $user->getFriend();
+        $i = 0;
+        $friendStats = [];
+        if ($friendsDB !== null) {
+            /** @var User $value */
+            foreach ($friendsDB->getValues() as $value) {
+                if ($value->getUserStats() !== null) {
+                    $friendStat = $value->getUserStats()->getValues()[array_key_last($value->getUserStats()->getValues())];
+                    $friendStats[] = [
+                        'id' => $friendStat->getId(),
+                        'firstname' => $value->getFirstname(),
+                        'lastname' => $value->getLastname(),
+                        'title' => $friendStat->getTitle(),
+                        'date' => $friendStat->getDate(),
+                        'moneyEco' => $friendStat->getMoneyEconomised(),
+                        'cigarettes' => $friendStat->getCigarettesSaved(),
+                        'lifetime' => $friendStat->getLifetimeSaved(),
+                    ];
+                }
+            }
+        }
+
+        if ($friendStats === null) {
+            return new Response('{}', 500, ['Content-Type' => 'application/json']);
+        }
+
+        return $this->handleView($this->view($friendStats));
+    }
 }

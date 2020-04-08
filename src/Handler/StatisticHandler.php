@@ -38,7 +38,7 @@ class StatisticHandler
                     $userStat->setTitle($statistic->getTitle());
                     $userStat->setLifetimeSaved($statistic->getLifetimeSaved());
                     $userStat->setCigarettesSaved($statistic->getUnsmokedCigarette());
-                    $userStat->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+                    $userStat->setDate( new \DateTime('now'));
                     $userStat->setMoneyEconomised($user->getPackageCost() * (round($statistic->getUnsmokedCigarette() / 20, 1)));
                     $userStat->setStatistic($statistic);
                     $userStat->setImageUrl($statistic->getImage());
