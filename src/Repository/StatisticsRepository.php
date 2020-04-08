@@ -19,4 +19,13 @@ class StatisticsRepository extends ServiceEntityRepository
         parent::__construct($registry, Statistics::class);
     }
 
+     public function validStats($unSmoked)
+     {
+         return $this->createQueryBuilder('s')
+             ->andWhere('s.unsmokedCigarette <= :val')
+             ->setParameter('val', $unSmoked)
+             ->getQuery()
+             ->getResult()
+         ;
+     }
 }

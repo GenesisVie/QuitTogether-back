@@ -23,28 +23,28 @@ class StatisticHandler
 
     public function updateUserStats(User $user): void
     {
-        $now = time(); // or your date as well
+        $now = new \DateTime('now');
         $stoppedAt = $user->getStoppedAt();
-        $datediff = $now - $stoppedAt;
+        $datediff = date_diff($stoppedAt, $now);
         $packageCost = $user->getPackageCost();
         $averagePerDay = $user->getAveragePerDay();
-        $unsmokedStat = $datediff * $averagePerDay;
-        $statistics = $this->em->getRepository(Statistics::class)->findBy(['unsmokedCigarette' > $unsmokedStat]);
+
+        $unsmokedStat = $datediff->format('%a') * $averagePerDay;
+        $statistics = $this->em->getRepository(Statistics::class)->validStats($unsmokedStat);
         $userStats = $user->getUserStats();
         foreach ($statistics as $statistic) {
-            foreach ($userStats as $item) {
-                if ($item->getStatistic() !== $statistic) {
-                    $userStat = new UserStat();
-                    $userStat->setTitle($statistic->getTitle());
-                    $userStat->setLifetimeSaved($statistic->getLifetimeSaved());
-                    $userStat->setCigarettesSaved($statistic->getUnsmokedCigarette());
-                    $userStat->setDate( new \DateTime('now'));
-                    $userStat->setMoneyEconomised($user->getPackageCost() * (round($statistic->getUnsmokedCigarette() / 20, 1)));
-                    $userStat->setStatistic($statistic);
-                    $userStat->setImageUrl($statistic->getImage());
-                    $userStat->setUser($user);
-                    $this->em->persist($userStat);
-                }
+            $userStatDB = $this->em->getRepository(UserStat::class)->findOneBy(['statistic' => $statistic]);
+            if ($userStatDB === null ) {
+                $userStat = new UserStat();
+                $userStat->setTitle($statistic->getTitle());
+                $userStat->setLifetimeSaved($statistic->getLifetimeSaved());
+                $userStat->setCigarettesSaved($statistic->getUnsmokedCigarette());
+                $userStat->setDate(new \DateTime('now'));
+                $userStat->setMoneyEconomised($user->getPackageCost() * (round($statistic->getUnsmokedCigarette() / 20, 1)));
+                $userStat->setStatistic($statistic);
+                $userStat->setImageUrl($statistic->getImage());
+                $userStat->setUser($user);
+                $this->em->persist($userStat);
             }
         }
 
