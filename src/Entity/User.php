@@ -95,7 +95,7 @@ class User implements UserInterface
     private $friends;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user", cascade={"persist", "remove"})
      */
     private $userStats;
 

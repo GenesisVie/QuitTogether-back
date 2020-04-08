@@ -66,7 +66,7 @@ class Statistics
     private $unsmokedCigarette;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="statistic")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="statistic", cascade={"persist", "remove"})
      */
     private $userStats;
 
