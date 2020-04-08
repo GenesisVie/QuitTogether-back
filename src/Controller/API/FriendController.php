@@ -3,8 +3,11 @@
 namespace App\Controller\API;
 
 use App\Entity\User;
+use App\Form\FriendType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use phpDocumentor\Reflection\Types\This;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -15,22 +18,29 @@ class FriendController extends AbstractFOSRestController
 {
     /**
      * Add friend
-     * @Rest\Get("/add/{email}")
+     * @Rest\Post("/add")
      */
-    public function addFriend($email)
+    public function addFriend(Request $request)
     {
         /** @var User $user */
         $user = $this->getUser();
-        $newFriend = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
-        if ($newFriend !== null) {
+        $form = $this->createform(FriendType::class);
+        $data = json_decode($request->getcontent(), true);
+        $form->submit($data);
+        if ($form->issubmitted() && $form->isvalid()) {
             $em = $this->getDoctrine()->getManager();
-            $user->addFriend($newFriend);
-            $em->persist($user);
-            $em->flush();
-        } else {
-            return new Response('User not found', 500);
+            /** @var User $user */
+            $newFriend = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $data['email']]);
+            if ($newFriend !== null ) {
+                $em->persist($user);
+                $em->persist($user);
+                $em->flush();
+                return $this->handleview($this->view(['status' => 'friend added'], response::HTTP_CREATED));
+            }else{
+                return $this->handleView($this->view(['status' => 'not found'], response::HTTP_NOT_MODIFIED));
+            }
         }
-        return new Response('Success', 200);
+        return $this->handleview($this->view($form->geterrors()));
     }
 
     /**
