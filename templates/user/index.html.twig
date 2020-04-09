@@ -8,7 +8,7 @@
 
         background-repeat: no-repeat;
         background-color: #003f5c;
-        height: 100%;
+
     }
     tr
     {
@@ -23,37 +23,55 @@
         text-align: center;
         color: #fb5b5a;
     }
-    .list-group-item
-    {
-        background-color:#003f5c;
+    .list-group-item {
+        background-color: #003f5c;
         color: #fb5b5a;
         border: none;
+        margin-top: 30px;
+        width: 200px;
     }
     .footer {
         height: 100px;
         position: absolute;
         bottom: 0;
     }
+    .fixed-top
+    {
+        margin-top: 20px;
+    }
+    .crea
+    {
+        margin-top: 20px;
+    }
+    .btn
+    {
+        color: #fb5b5a;
+        bacbackground-color: "#465881"
+    }
 </style>
 <h1>
     Utilisateurs
 </h1>
+
+
 <div class="d-flex" id="wrapper">
     <div class="mb-3">
         <div class="list-group list-group-flush">
             <a href="{{ path('admin') }}" class="list-group-item list-group-item-action ">Accueil</a>
             <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action ">Utilisateur</a>
             <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action ">Blog</a>
-            <a href="" class="list-group-item list-group-item-action ">Statistiques</a>
-            <button class="btn btn-primary">
-            <a href="{{ path('user_new') }}">Create new</a>
+            <a href="{{ path('statistics_index') }}" class="list-group-item list-group-item-action ">Statistiques</a>
+            <div class="crea col-12">
+            <button class="btn btn-primary btn-lg">
+            <a href="{{ path('user_new') }}">Créer un nouveau</a>
             </button>
-
+            </div>
         </div>
-    </div>
+
+</div>
 
 
-    <div class="footer">
+    <div class="fixed-top col-6">
         <a href="{{ path('app_logout') }}">
             <button class="btn btn-primary btn-lg">
                 Logout
@@ -61,7 +79,8 @@
         </a>
     </div>
 
-
+    <div class="container">
+        <div class="row">
     <table class="table">
         <thead>
             <tr>
@@ -84,11 +103,11 @@
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
                 <td>
-                    <button type="button" class="btn btn-dark">
-                    <a href="{{ path('user_show', {'id': user.id}) }}">Show</a>
+                    <button type="button" class="btn btn-primary ">
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Détails</a>
                     </button>
-                        <button type="button" class="btn btn-dark">
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                        <button type="button" class="btn btn-primary">
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
                         </button>
                 </td>
             </tr>
@@ -99,6 +118,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+        </div>
+    </div>
 
 {% endblock %}

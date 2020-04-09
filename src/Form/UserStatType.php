@@ -2,29 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Blog;
+use App\Entity\UserStat;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class BlogType extends AbstractType
+class UserStatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt', DateTimeType::class)
+            ->add('date', DateTimeType::class)
+            ->add('moneyEconomised')
+            ->add('cigarettesSaved')
+            ->add('lifetimeSaved')
             ->add('title')
-            ->add('description')
-            ->add('imageFile', VichImageType::class)
+            ->add('statistic')
+            ->add('user')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Blog::class,
+            'data_class' => UserStat::class,
         ]);
     }
 }
