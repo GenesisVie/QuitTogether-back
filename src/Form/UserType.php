@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,7 @@ class UserType extends AbstractType
 //            ->add('createdAt')
 //            ->add('updatedAt')
 //            ->add('stopped_at')
-            ->add('birthday')
+            ->add('birthday', DateTimeType::class)
             ->add('packageCost')
         ;
     }

@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Statistics;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class StatisticsType extends AbstractType
 {
@@ -14,8 +16,8 @@ class StatisticsType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('image')
-            ->add('updatedAt')
+            ->add('imageFile', VichImageType::class)
+            ->add('updatedAt', DateTimeType::class)
             ->add('moneyEconomised')
             ->add('lifetimeSaved')
             ->add('unsmokedCigarette')
