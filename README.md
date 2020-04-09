@@ -1,5 +1,6 @@
 # Présentation du projet
 
+Ce projet est a été réalisé dans le contexte de projet de fin d'année pour notre 3ème année de Bachelor au sein de l'école Ynov situé a Lyon.
 QuitTogether est une application mobile qui permet a ses utilisateurs d'arreter ou de diminuer la cigarette.
 Notre but est d'apporter une plateforme aux personnes qui souhaitent se débrasser de cette addiction qui est la cigarette.
 Et de les aider dans leur aventure pour accomplir ce but.
@@ -16,15 +17,13 @@ MOUSSET Antoine (spécialité Web-Mobile).
 
 La période oû ce projet a été réalisé est du mois d'octobre 2019 au mois d'avril 2020.
 
-# Aperçu du projet 
+# Technologies du projet
 
-![Page de connexion de l'admin](https://gyazo.com/4ff8111c1a549c6827c9ab4607c795a1)
-
-# Back office 
-
+Pour le back et le front office ce projet a été réalisé a l'aide du framework Symfony.
+Et l'application a été réalisé a l'aide du framework React Native.
 
 
-## Installation
+## Installation du Back office 
 
 `composer update`
 
@@ -36,6 +35,7 @@ La période oû ce projet a été réalisé est du mois d'octobre 2019 au mois d
 **Fixtures**
 
 `bin/console d:f:l`
+
 
 ##Générer les clés pour le JWT
 
