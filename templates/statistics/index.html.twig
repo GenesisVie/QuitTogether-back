@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Statistics index{% endblock %}
+{% block title %}Index des statistiques{% endblock %}
 
 {% block body %}
     <style>
@@ -70,7 +70,7 @@
     <div class="fixed-top col-6">
         <a href="{{ path('app_logout') }}">
             <button class="btn btn-primary btn-lg">
-                Logout
+                Se déconnecter
             </button>
         </a>
     </div>
@@ -79,13 +79,13 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
                 <th>Image</th>
-                <th>UpdatedAt</th>
-                <th>MoneyEconomised</th>
-                <th>LifetimeSaved</th>
-                <th>UnsmokedCigarette</th>
+                <th>Modifié le</th>
+                <th>Argent économisé</th>
+                <th>Periode de vie économisé</th>
+                <th>Cigarettes non fumées</th>
                 <th>Actions</th>
             </tr>
         </thead>

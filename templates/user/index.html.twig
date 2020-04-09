@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Index des Utilisateurs{% endblock %}
 
 {% block body %}
 <style>
@@ -74,7 +74,7 @@
     <div class="fixed-top col-6">
         <a href="{{ path('app_logout') }}">
             <button class="btn btn-primary btn-lg">
-                Logout
+                Se déconnecter
             </button>
         </a>
     </div>
@@ -86,10 +86,10 @@
             <tr>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>CreatedAt</th>
-                <th>Birthday</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Crée le</th>
+                <th>Anniversaire</th>
                 <th>Actions</th>
             </tr>
         </thead>

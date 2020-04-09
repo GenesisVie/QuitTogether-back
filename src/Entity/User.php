@@ -76,16 +76,19 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     private $cigarettes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\AchievementUser", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     private $achievementUsers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     private $notes;
 
@@ -96,6 +99,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $userStats;
 
