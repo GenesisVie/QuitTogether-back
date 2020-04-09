@@ -37,7 +37,7 @@ Et l'application a été réalisé a l'aide du framework React Native.
 `bin/console d:f:l`
 
 
-##Générer les clés pour le JWT
+## Générer les clés pour le JWT
 
 `openssl genrsa -out config/jwt/private.pem -aes256 4096`
 
