@@ -21,6 +21,7 @@ class StatisticHandler
         $this->em = $em;
     }
 
+    // Function qui vient rajouter un statistique a l'utilisateur si les conditions sont valables
     public function updateUserStats(User $user): void
     {
         $now = new \DateTime('now');

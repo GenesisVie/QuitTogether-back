@@ -71,6 +71,7 @@ class UserController extends AbstractFOSRestController
             'stoppedAt' => $user->getStoppedAt(),
             'packageCost' => $user->getPackageCost(),
             'firstname'=>$user->getFirstname(),
+            'averageDay'=>$user->getAveragePerDay(),
             'lastname'=>$user->getLastname(),
             'image'=>$user->getImage(),
         ];

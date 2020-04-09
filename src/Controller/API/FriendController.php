@@ -60,6 +60,7 @@ class FriendController extends AbstractFOSRestController
                 'firstname' => $value->getFirstname(),
                 'lastname' => $value->getLastname(),
                 'averagePerDay' => $value->getAveragePerDay(),
+                'image' => $value->getImage(),
             ];
         }
 
