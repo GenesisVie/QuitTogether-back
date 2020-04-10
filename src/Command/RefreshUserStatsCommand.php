@@ -55,10 +55,6 @@ class RefreshUserStatsCommand extends Command
                 $this->em->flush();
             }
             $this->handler->updateUserStats($user);
-            if ($user->getEmail() === "test1@gmail.com") {
-                dump($user);
-                die();
-            }
         }
     }
 }
