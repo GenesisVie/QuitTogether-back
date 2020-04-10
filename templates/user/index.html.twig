@@ -89,7 +89,7 @@
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Crée le</th>
-                <th>Anniversaire</th>
+                <th>Date d'arret</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -100,7 +100,7 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.stoppedAt ? user.stoppedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
                 <td>
                     <button type="button" class="btn btn-primary ">

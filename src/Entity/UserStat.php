@@ -117,7 +117,7 @@ class UserStat
         return $this;
     }
 
-    public function getLifetimeSaved(): ?int
+    public function getLifetimeSaved(): ?string
     {
         return $this->lifetimeSaved;
     }
