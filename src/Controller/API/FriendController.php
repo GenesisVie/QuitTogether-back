@@ -32,7 +32,7 @@ class FriendController extends AbstractFOSRestController
             /** @var User $user */
             $newFriend = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $data['email']]);
             if ($newFriend !== null ) {
-                $em->persist($user);
+                $user->addFriend($newFriend);
                 $em->persist($user);
                 $em->flush();
                 return $this->handleview($this->view(['status' => 'friend added'], response::HTTP_CREATED));
