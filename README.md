@@ -19,9 +19,8 @@ La période oû ce projet a été réalisé est du mois d'octobre 2019 au mois d
 
 # Technologies du projet
 
-Pour le back et le front office ce projet a été réalisé a l'aide du framework Symfony.</br>
-Et l'application a été réalisé a l'aide du framework React Native.</br>
-
+Back réalisé a l'aide du framework Symfony.</br>
+https://symfony.com/
 
 ## Installation du Back office 
 
