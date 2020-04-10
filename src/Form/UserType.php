@@ -20,7 +20,8 @@ class UserType extends AbstractType
 //            ->add('createdAt')
 //            ->add('updatedAt')
 //            ->add('stopped_at')
-            ->add('birthday', DateTimeType::class)
+//            ->add('birthday', DateTimeType::class)
+            ->add('averagePerDay')
             ->add('packageCost')
         ;
     }
