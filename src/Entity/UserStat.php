@@ -112,7 +112,7 @@ class UserStat
 
     public function setCigarettesSaved(int $cigarettesSaved): self
     {
-        $this->cigarettesSaved = $cigarettesSaved;
+        $this->cigarettesSaved = (int)$cigarettesSaved;
 
         return $this;
     }
