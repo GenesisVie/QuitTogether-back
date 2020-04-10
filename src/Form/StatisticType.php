@@ -18,7 +18,7 @@ class StatisticType extends AbstractType
             ->add('cigarettesSaved')
             ->add('since')
             ->add('lifetimeSaved')
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class,['required'=>false])
 
         ;
     }

@@ -45,6 +45,7 @@ class CigaretteController extends AbstractFOSRestController
      * @Rest\Post("/me/new")
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function postMyCigarette(Request $request)
     {
@@ -56,7 +57,9 @@ class CigaretteController extends AbstractFOSRestController
             $em = $this->getDoctrine()->getManager();
             /** @var User $user */
             $user = $this->getUser();
+            $user->setStoppedAt(new \DateTime('now'));
             $cigarette->setUser($user);
+            $em->persist($user);
             $em->persist($cigarette);
             $em->flush();
             return $this->handleview($this->view(['status' => 'cigarette created and linked'], response::HTTP_CREATED));

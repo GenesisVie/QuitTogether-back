@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -76,35 +76,29 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="cascade")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $cigarettes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\AchievementUser", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="cascade")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $achievementUsers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="cascade")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $notes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="friend")
-     */
-    private $friends;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user",  orphanRemoval=true)
      */
     private $userStats;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -114,6 +108,18 @@ class User implements UserInterface
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $averagePerDay;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="friend")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $friend;
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -121,22 +127,22 @@ class User implements UserInterface
 
     public function prePersist()
     {
-        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function __construct()
     {
-        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setBirthday(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setBirthday(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setStoppedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
+        $this->setUpdatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
         $this->cigarettes = new ArrayCollection();
         $this->achievementUsers = new ArrayCollection();
         $this->notes = new ArrayCollection();
-        $this->friends = new ArrayCollection();
         $this->userStats = new ArrayCollection();
+        $this->friend = new ArrayCollection();
     }
 
     public function getFullName(): ?string
@@ -402,37 +408,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Friend[]
-     */
-    public function getFriends(): Collection
-    {
-        return $this->friends;
-    }
-
-    public function addFriend(Friend $friend): self
-    {
-        if (!$this->friends->contains($friend)) {
-            $this->friends[] = $friend;
-            $friend->setFriend($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFriend(Friend $friend): self
-    {
-        if ($this->friends->contains($friend)) {
-            $this->friends->removeElement($friend);
-            // set the owning side to null (unless already changed)
-            if ($friend->getFriend() === $this) {
-                $friend->setFriend(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|UserStat[]
      */
     public function getUserStats(): Collection
@@ -488,5 +463,43 @@ class User implements UserInterface
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getAveragePerDay(): ?int
+    {
+        return $this->averagePerDay;
+    }
+
+    public function setAveragePerDay(int $averagePerDay): self
+    {
+        $this->averagePerDay = $averagePerDay;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFriend(): Collection
+    {
+        return $this->friend;
+    }
+
+    public function addFriend(self $friend): self
+    {
+        if (!$this->friend->contains($friend)) {
+            $this->friend[] = $friend;
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(self $friend): self
+    {
+        if ($this->friend->contains($friend)) {
+            $this->friend->removeElement($friend);
+        }
+
+        return $this;
     }
 }

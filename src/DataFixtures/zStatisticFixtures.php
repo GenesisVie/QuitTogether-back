@@ -18,7 +18,7 @@ class zStatisticFixtures extends Fixture
             $statistic->setTitle('Statistic-' . $i);
             $statistic->setDescription('Bravo ' . $i . ' clopes non fumées');
             $statistic->setLifetimeSaved( $i /2);
-            $statistic->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+            $statistic->setUpdatedAt( new \DateTime('now'));
             $statistic->setUnsmokedCigarette( $i);
             $statistic->setMoneyEconomised( $i);
             $statistic->setImage('stats.png');
@@ -34,9 +34,10 @@ class zStatisticFixtures extends Fixture
                 $userStat->setTitle($statistic->getTitle());
                 $userStat->setLifetimeSaved($statistic->getLifetimeSaved());
                 $userStat->setCigarettesSaved($statistic->getUnsmokedCigarette());
-                $userStat->setDate(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+                $userStat->setDate( new \DateTime('now'));
                 $userStat->setMoneyEconomised($user->getPackageCost()  * (round($statistic->getUnsmokedCigarette() / 20, 1)));
                 $userStat->setStatistic($statistic);
+                $userStat->setImageUrl($statistic->getImage());
                 $userStat->setUser($user);
                 $manager->persist($userStat);
             }

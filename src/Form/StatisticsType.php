@@ -16,7 +16,7 @@ class StatisticsType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class,['required'=>false])
             ->add('updatedAt', DateTimeType::class)
             ->add('moneyEconomised')
             ->add('lifetimeSaved')

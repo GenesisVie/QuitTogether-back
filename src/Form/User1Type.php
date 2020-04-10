@@ -15,14 +15,13 @@ class User1Type extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
             ->add('password')
             ->add('firstname')
             ->add('lastname')
             ->add('stoppedAt', DateTimeType::class)
             ->add('birthday')
             ->add('packageCost')
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class,['required'=>false])
 
         ;
     }

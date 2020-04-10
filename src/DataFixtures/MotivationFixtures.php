@@ -21,8 +21,8 @@ class MotivationFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $motivation = new Motivation();
             $motivation->setTitle('Motivation-' . $i);
-            $motivation->setUpdatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
-            $motivation->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+            $motivation->setUpdatedAt( new \DateTime('now'));
+            $motivation->setCreatedAt( new \DateTime('now'));
             $motivation->setText('string');
             $motivation->setImage('string');
             $manager->persist($motivation);

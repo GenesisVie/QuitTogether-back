@@ -6,6 +6,7 @@ use App\Entity\Statistic;
 use App\Entity\User;
 use App\Entity\UserStat;
 use App\Form\StatisticType;
+use App\Handler\StatisticHandler;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,10 @@ use Symfony\Component\Serializer\Serializer;
 class UserStatController extends AbstractFOSRestController
 {
 /**
-     * List all Users
+     * List my UsersStat
      * @Rest\Get("/me")
      */
-    public function getMyDetails()
+    public function getMyDetails(StatisticHandler $statisticHandler)
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -32,6 +33,7 @@ class UserStatController extends AbstractFOSRestController
 
         /** @var User $user */
         $user = $this->getUser();
+        $statisticHandler->updateUserStats($user);
         $userStats = [];
         foreach ($user->getUserStats() as $userStat) {
             $userStats[] = [
@@ -41,6 +43,7 @@ class UserStatController extends AbstractFOSRestController
                 'moneyEco' => $userStat->getMoneyEconomised(),
                 'cigarettes' => $userStat->getCigarettesSaved(),
                 'lifetime' => $userStat->getLifetimeSaved(),
+                'image' => $userStat->getImageUrl(),
             ];
         }
 
@@ -52,6 +55,7 @@ class UserStatController extends AbstractFOSRestController
     }
 
     /**
+     * create new userstat
      * @Rest\Post("/new-stat-user")
      * @param Request $request
      * @return Response

@@ -37,7 +37,7 @@ class Blog
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -60,12 +60,12 @@ class Blog
      */
     public function prePersist()
     {
-        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function __construct()
     {
-        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+        $this->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
     }
 
     public function getId(): ?int
