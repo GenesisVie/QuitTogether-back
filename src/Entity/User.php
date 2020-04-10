@@ -76,25 +76,25 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $cigarettes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\AchievementUser", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $achievementUsers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Note", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $notes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $userStats;
 
@@ -115,8 +115,10 @@ class User implements UserInterface
      */
     private $averagePerDay;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="friend")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="friend")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $friend;
     /**
