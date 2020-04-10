@@ -33,8 +33,9 @@ class StatisticHandler
         $unsmokedStat = $datediff->format('%a') * $averagePerDay;
         $statistics = $this->em->getRepository(Statistics::class)->validStats($unsmokedStat);
         $userStats = $user->getUserStats();
+        /** @var Statistics $statistic */
         foreach ($statistics as $statistic) {
-            $userStatDB = $this->em->getRepository(UserStat::class)->findOneBy(['statistic' => $statistic]);
+            $userStatDB = $this->em->getRepository(UserStat::class)->findOneBy(['statistic' => $statistic, 'user'=>$user]);
             if ($userStatDB === null ) {
                 $userStat = new UserStat();
                 $userStat->setTitle($statistic->getTitle());
@@ -45,7 +46,21 @@ class StatisticHandler
                 $userStat->setStatistic($statistic);
                 $userStat->setImageUrl($statistic->getImage());
                 $userStat->setUser($user);
+                $user->addUserStat($userStat);
                 $this->em->persist($userStat);
+                $this->em->persist($user);
+            }else{
+                $userStatDB->setTitle($statistic->getTitle());
+                $userStatDB->setLifetimeSaved($statistic->getLifetimeSaved());
+                $userStatDB->setCigarettesSaved($statistic->getUnsmokedCigarette());
+                $userStatDB->setDate(new \DateTime('now'));
+                $userStatDB->setMoneyEconomised($user->getPackageCost() * (round($statistic->getUnsmokedCigarette() / 20, 1)));
+                $userStatDB->setStatistic($statistic);
+                $userStatDB->setImageUrl($statistic->getImage());
+                $userStatDB->setUser($user);
+                $user->addUserStat($userStatDB);
+                $this->em->persist($userStatDB);
+                $this->em->persist($user);
             }
         }
 

@@ -28,7 +28,7 @@ class CreateUserCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
+            ->setDescription("Création d'un Admin ")
             ->addArgument('email', InputArgument::OPTIONAL, 'Email')
             ->addArgument('password', InputArgument::OPTIONAL, 'Password')
         ;
