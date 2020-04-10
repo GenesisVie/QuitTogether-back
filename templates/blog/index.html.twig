@@ -85,7 +85,6 @@
                     <th>Id</th>
                     <th>Crée le</th>
                     <th>Titre</th>
-                    <th>Description</th>
                     <th>Image</th>
                     <th>Actions</th>
                 </tr>
@@ -96,7 +95,6 @@
                         <td>{{ blog.id }}</td>
                         <td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>{{ blog.title }}</td>
-                        <td>{{ blog.description }}</td>
                         <td>{{ blog.image }}</td>
                         <td>
                             <button type="button" class="btn btn-primary">
