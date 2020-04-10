@@ -33,7 +33,7 @@ class UserStat
     private $cigarettesSaved;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $lifetimeSaved;
 
@@ -122,7 +122,7 @@ class UserStat
         return $this->lifetimeSaved;
     }
 
-    public function setLifetimeSaved(int $lifetimeSaved): self
+    public function setLifetimeSaved(?string $lifetimeSaved): self
     {
         $this->lifetimeSaved = $lifetimeSaved;
 
