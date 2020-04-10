@@ -17,7 +17,7 @@ class BlogType extends AbstractType
             ->add('createdAt', DateTimeType::class)
             ->add('title')
             ->add('description')
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class,['required'=>false])
         ;
     }
 
