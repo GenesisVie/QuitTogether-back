@@ -115,6 +115,10 @@ class UserController extends AbstractFOSRestController
      */
     public function postUser(Request $request, UserPasswordEncoderInterface $userPasswordEncoder)
     {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+        $jsonObject = $serializer->serialize(['success' => false], 'json');
         $user = new User();
         $form = $this->createform(UserType::class, $user);
         $data = json_decode($request->getcontent(), true);
@@ -126,9 +130,10 @@ class UserController extends AbstractFOSRestController
             ));
             $em->persist($user);
             $em->flush();
-            return $this->handleview($this->view(['status' => 'User created'], response::HTTP_CREATED));
+            $jsonObject = $serializer->serialize(['success' => true], 'json');
+            return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
         }
-        return $this->handleview($this->view($form->geterrors()));
+        return new Response($jsonObject, 500, ['Content-Type' => 'application/json']);
     }
 
 
