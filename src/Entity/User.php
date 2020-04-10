@@ -93,8 +93,7 @@ class User implements UserInterface
     private $notes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStat", mappedBy="user",  orphanRemoval=true)
      */
     private $userStats;
 
