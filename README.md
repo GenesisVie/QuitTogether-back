@@ -24,6 +24,8 @@ https://symfony.com/
 
 ## Installation du Back office 
 
+Le .env se trouve dans le pdf envoyé. </br>
+
 `composer update`
 
 `bin/console d:d:c`
@@ -31,7 +33,7 @@ https://symfony.com/
 `bin/console d:s:u --force`
 
 
-**Fixtures**
+**Fixtures (création du base de test)**
 
 `bin/console d:f:l`
 
