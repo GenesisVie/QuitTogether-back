@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Statistics{% endblock %}
+{% block title %}Statistiques{% endblock %}
 
 {% block body %}
     <style>
@@ -32,7 +32,7 @@
             margin-top: 20px;
         }
     </style>
-    <h1>Statistics</h1>
+    <h1>Statistiques</h1>
 
     <table class="table">
         <tbody>
@@ -41,7 +41,7 @@
                 <td>{{ statistic.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ statistic.title }}</td>
             </tr>
             <tr>
@@ -53,19 +53,19 @@
                 <td>{{ statistic.image }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Modifié le</th>
                 <td>{{ statistic.updatedAt ? statistic.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>MoneyEconomised</th>
+                <th>Argent economisé</th>
                 <td>{{ statistic.moneyEconomised }}</td>
             </tr>
             <tr>
-                <th>LifetimeSaved</th>
+                <th>Periode de vie économisé</th>
                 <td>{{ statistic.lifetimeSaved }}</td>
             </tr>
             <tr>
-                <th>UnsmokedCigarette</th>
+                <th>Cigarettes non fumées</th>
                 <td>{{ statistic.unsmokedCigarette }}</td>
             </tr>
         </tbody>

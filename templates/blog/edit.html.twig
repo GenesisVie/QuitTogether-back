@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier Blog{% endblock %}
+{% block title %}Modification du Blog{% endblock %}
+
 
 {% block body %}
     <style>
@@ -32,11 +33,11 @@
             margin-top: 20px;
         }
     </style>
-    <h1>Edit Blog</h1>
+    <h1>Modifier un article</h1>
 
-    {{ include('blog/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('blog/_form.html.twig', {'button_label': 'Modifier'}) }}
 <button type="button" class="btn btn-dark">
-    <a href="{{ path('blog_index') }}">Revenir a la liste</a>
+    <a href="{{ path('blog_index') }}">Retourner a la liste</a>
 </button>
 
     {{ include('blog/_delete_form.html.twig') }}

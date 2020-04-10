@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Blog{% endblock %}
+{% block title %}Nouvel Article{% endblock %}
 
 {% block body %}
 <style>
@@ -21,10 +21,10 @@
         margin-top: 20px;
     }
     </style>
-    <h1>Create new Blog</h1>
+    <h1>Créer un nouvel article</h1>
 
     {{ include('blog/_form.html.twig') }}
 <button type="button" class="btn btn-dark">
-    <a href="{{ path('blog_index') }}">Back to the list</a>
+    <a href="{{ path('blog_index') }}">Retourner a la liste</a>
 </button>
 {% endblock %}

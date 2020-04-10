@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Statistics{% endblock %}
+{% block title %}Modifier les statistiques{% endblock %}
 
 {% block body %}
     <style>
@@ -32,11 +32,11 @@
             margin-top: 20px;
         }
     </style>
-    <h1>Edit Statistics</h1>
+    <h1>Modifier les statistiques</h1>
 
-    {{ include('statistics/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('statistics/_form.html.twig', {'button_label': 'Modifier'}) }}
 <button class="btn btn-dark">
-    <a href="{{ path('statistics_index') }}">Back to the list</a>
+    <a href="{{ path('statistics_index') }}">Retourner a la liste</a>
 </button>
     {{ include('statistics/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog index{% endblock %}
+{% block title %}Index du blog{% endblock %}
 
 {% block body %}
     <style>
@@ -71,7 +71,7 @@
         <div class="fixed-top col-6">
             <a href="{{ path('app_logout') }}">
                 <button class="btn btn-primary btn-lg">
-                    Logout
+                    Se déconnecter
                 </button>
             </a>
         </div>
@@ -83,8 +83,8 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>CreatedAt</th>
-                    <th>Title</th>
+                    <th>Crée le</th>
+                    <th>Titre</th>
                     <th>Description</th>
                     <th>Image</th>
                     <th>Actions</th>

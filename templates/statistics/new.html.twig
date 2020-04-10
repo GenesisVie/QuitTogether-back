@@ -1,12 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Statistics{% endblock %}
+{% block title %}Nouvelle Statistiques{% endblock %}
 
 {% block body %}
-    <h1>Create new Statistics</h1>
+    <style>
+        body {
+
+            background-repeat: no-repeat;
+            background-color: #003f5c;
+            margin-top: 50px;
+            color: #fb5b5a;
+            text-align: center;
+        }
+        h1
+        {
+            color: #fb5b5a;
+        }
+        .btn
+        {
+            margin-top: 20px;
+        }
+    </style>
+    <h1>Créer une nouvelle statistique</h1>
 
     {{ include('statistics/_form.html.twig') }}
 <button type="button" class="btn btn-dark">
-    <a href="{{ path('statistics_index') }}">Back to the list</a>
+    <a href="{{ path('statistics_index') }}">Retourner a la liste</a>
 </button>
 {% endblock %}
