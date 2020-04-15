@@ -22,7 +22,7 @@ class CigaretteController extends AbstractFOSRestController
 {
     /**
      * List all of my cigarettes
-     * @Rest\Get("/me/all")
+     * @Rest\Get("/all")
      */
     public function getAllMyCigarettes()
     {
@@ -42,7 +42,7 @@ class CigaretteController extends AbstractFOSRestController
 
     /**
      * Post my cigarette
-     * @Rest\Post("/me/new")
+     * @Rest\Post("/add")
      * @param Request $request
      * @return Response
      * @throws \Exception
@@ -57,6 +57,7 @@ class CigaretteController extends AbstractFOSRestController
             $em = $this->getDoctrine()->getManager();
             /** @var User $user */
             $user = $this->getUser();
+            //RESET stoppedAt
             $user->setStoppedAt(new \DateTime('now'));
             $cigarette->setUser($user);
             $em->persist($user);
