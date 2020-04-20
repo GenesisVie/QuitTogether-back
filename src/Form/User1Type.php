@@ -21,6 +21,7 @@ class User1Type extends AbstractType
             ->add('stoppedAt', DateTimeType::class)
             ->add('birthday')
             ->add('packageCost')
+            ->add('averagePerDay')
             ->add('imageFile', VichImageType::class,['required'=>false])
 
         ;

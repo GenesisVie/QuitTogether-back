@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Form\FriendType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

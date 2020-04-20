@@ -116,8 +116,8 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="friend")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="friend", orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     private $friend;
     /**
